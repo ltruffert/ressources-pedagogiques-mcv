@@ -1,1 +1,1 @@
-# ressources-ppedagogiques-mcv
+# ressources-pedagogiques-mcv
