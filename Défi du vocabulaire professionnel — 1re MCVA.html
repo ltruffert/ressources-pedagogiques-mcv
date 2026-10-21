@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Défi du vocabulaire professionnel — 1re MCVA</title>
+<style>
+:root{--navy:#17324d;--blue:#2864a5;--pale:#eef5fc;--gold:#f3c969;--green:#24734d;--red:#a73535;--ink:#243447;--muted:#64748b;--line:#d8e1eb}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+header{background:linear-gradient(120deg,#17324d,#2864a5);color:white;padding:28px 18px 24px;text-align:center}
+header .tag{display:inline-block;background:#ffffff20;border:1px solid #ffffff50;border-radius:999px;padding:5px 12px;font-size:.9rem}
+h1{margin:10px 0 5px;font-size:clamp(1.6rem,4vw,2.5rem)}header p{margin:0 auto;max-width:760px}
+main{max-width:1000px;margin:22px auto;padding:0 15px 40px}
+.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;margin:15px 0;box-shadow:0 5px 18px #17324d0c}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}
+h2{color:var(--navy);margin:0 0 12px;font-size:1.45rem}h3{margin:0 0 8px;color:var(--navy)}
+.muted{color:var(--muted)}.pill{display:inline-block;border-radius:999px;padding:5px 10px;background:var(--pale);color:var(--navy);font-weight:bold;font-size:.9rem}
+.progress{height:9px;background:#e5edf5;border-radius:999px;overflow:hidden;flex:1;min-width:130px}.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:11px 16px;font-weight:bold;background:var(--blue);color:white}
+button:hover{filter:brightness(.95)}button:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#e8eef5;color:var(--navy)}.gold{background:var(--gold);color:#263747}.small{font-size:.9rem;padding:8px 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.module{border:1px solid var(--line);border-radius:13px;padding:16px;background:#fff}
+.module p{margin:5px 0 13px;color:var(--muted)}.module .number{font-weight:bold;color:var(--blue)}
+.hide{display:none!important}
+.answers{display:grid;gap:10px;margin:16px 0}
+.answer{display:block;width:100%;text-align:left;background:#f8fafc;color:var(--ink);border:2px solid var(--line);font-weight:normal}
+.answer.selected{border-color:var(--blue);background:#eaf3ff}.answer.correct{border-color:var(--green);background:#e9f7ef}.answer.wrong{border-color:var(--red);background:#fff0f0}
+.feedback{padding:13px;border-radius:10px;background:#f1f5f9;margin:12px 0}.feedback.good{background:#e9f7ef;color:#165c3a}.feedback.bad{background:#fff0f0;color:#8e2929}
+input[type=text],textarea,select{font:inherit;border:1px solid #b8c6d6;border-radius:9px;padding:11px;width:100%;background:white}
+textarea{min-height:90px;resize:vertical}.term{font-size:1.4rem;font-weight:bold;color:var(--blue)}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}legend{font-weight:bold;color:var(--navy);padding:0 6px}
+footer{text-align:center;color:var(--muted);padding:10px 20px 30px;font-size:.9rem}
+@media(max-width:600px){.panel{padding:16px}header{padding:22px 14px}.row .progress{order:3;flex-basis:100%}}
+</style>
+</head>
+<body>
+<header>
+  <span class="tag">CO-INTERVENTION FRANÇAIS – COMMERCE</span>
+  <h1>🎯 Le défi du vocabulaire professionnel</h1>
+  <p>1re MCVA · 60 minutes pour enrichir son vocabulaire, comprendre les mots et mieux s'exprimer en situation commerciale.</p>
+</header>
+<main>
+  <section class="panel" id="intro">
+    <h2>Bienvenue dans le défi !</h2>
+    <p>Tu vas réaliser cinq missions. Lis attentivement les consignes, réfléchis avant de répondre et utilise les corrections pour progresser. Pour les questions ouvertes, plusieurs réponses peuvent être acceptées : la correction te donne des exemples possibles.</p>
+    <div class="grid">
+      <div class="module"><span class="number">MISSION 1 · 10 min</span><h3>Le mot mystère</h3><p>Choisir la bonne définition d'un mot professionnel.</p></div>
+      <div class="module"><span class="number">MISSION 2 · 10 min</span><h3>Chasse aux synonymes</h3><p>Trouver des mots plus précis par soi-même.</p></div>
+      <div class="module"><span class="number">MISSION 3 · 15 min</span><h3>Reformule !</h3><p>Améliorer des phrases trop simples ou familières.</p></div>
+      <div class="module"><span class="number">MISSION 4 · 15 min</span><h3>Défis en magasin</h3><p>Choisir le vocabulaire adapté aux situations de vente.</p></div>
+      <div class="module"><span class="number">MISSION 5 · 10 min</span><h3>Bilan final</h3><p>Vérifier ses acquis et noter les mots à retenir.</p></div>
+    </div>
+    <fieldset><legend>Avant de commencer</legend>
+      <label for="student">Prénom (facultatif)</label><input id="student" type="text" placeholder="Écris ton prénom si tu le souhaites">
+      <p class="muted">Ton score reste affiché sur cet ordinateur pendant l'activité. Rien n'est envoyé en ligne.</p>
+    </fieldset>
+    <h3 style="margin-top:22px">Accès direct pour tester une mission</h3>
+    <p class="muted">Choisis une mission pour la vérifier sans refaire tout le parcours.</p>
+    <p class="muted">Tu peux aussi consulter toutes les questions et leurs corrections sans répondre.</p>
+    <div class="grid" id="missionMenu">
+      <button class="secondary" onclick="startMission(1)">Mission 1 — Définitions</button>
+      <button class="secondary" onclick="startMission(2)">Mission 2 — Synonymes</button>
+      <button class="secondary" onclick="startMission(3)">Mission 3 — Reformulation</button>
+      <button class="secondary" onclick="startMission(4)">Mission 4 — Situations commerciales</button>
+      <button class="secondary" onclick="startMission(5)">Mission 5 — Bilan final</button>
+    </div>
+    <div style="margin-top:12px"><button class="gold" onclick="showAllQuestions()">Voir toutes les questions et corrections</button></div>
+    <div style="margin-top:16px"><button onclick="startGame()">Commencer les missions dans l'ordre</button></div>
+  </section>
+
+  <section class="panel hide" id="game">
+    <div class="row between"><span class="pill" id="missionLabel">Mission 1</span><span class="pill" id="scoreLabel">Score : 0</span></div>
+    <div class="row" style="margin:13px 0"><div class="progress"><span id="progressBar"></span></div><span class="muted" id="progressText">Question 1</span></div>
+    <div id="activity"></div>
+    <div id="feedback" class="feedback hide" aria-live="polite"></div>
+    <div class="row between"><button class="secondary" id="backBtn" onclick="previousQuestion()">← Précédent</button><button id="checkBtn" onclick="checkAnswer()">Vérifier ma réponse</button><button id="nextBtn" class="gold hide" onclick="nextQuestion()">Question suivante →</button></div>
+  </section>
+
+  <section class="panel hide" id="allQuestions">
+    <div class="row between"><h2>Questions et corrections</h2><button class="secondary small" onclick="backToMenu()">← Retour au menu</button></div>
+    <p class="muted">Mode consultation : tu peux lire les questions, les propositions et les corrections sans répondre ni calculer de score.</p>
+    <div id="allQuestionsContent"></div>
+  </section>
+
+  <section class="panel hide" id="results">
+    <h2>🏆 Bravo, défi terminé !</h2>
+    <p id="resultName"></p>
+    <div class="row" style="align-items:baseline"><span style="font-size:2.4rem;font-weight:bold;color:var(--blue)" id="finalScore">0</span><span class="muted">points automatiques sur les questions à choix</span></div>
+    <p id="resultMessage"></p>
+    <h3>Mon bilan de vocabulaire</h3>
+    <p>Note cinq mots que tu veux retenir et leur définition avec tes propres mots.</p>
+    <textarea id="takeaways" placeholder="1. Mot : définition
+2. Mot : définition
+3. Mot : définition
+4. Mot : définition
+5. Mot : définition"></textarea>
+    <div class="row" style="margin-top:12px"><button onclick="window.print()" class="secondary">Imprimer / enregistrer en PDF</button><button onclick="restartGame()">Recommencer</button></div>
+    <p class="muted">Le score ne remplace pas l'évaluation de la qualité des réponses rédigées.</p>
+  </section>
+</main>
+<footer>Support pédagogique interactif · 1re MCVA · Français et commerce</footer>
+<script>
+const tasks = [
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Que signifie « fidélisation » ?",opts:["Ranger les produits par ordre alphabétique","Faire revenir les clients et entretenir une relation durable avec eux","Augmenter le prix de tous les articles"],a:1,why:"La fidélisation regroupe les actions qui encouragent les clients à revenir et à rester attachés à l'enseigne."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Qu'est-ce qu'un « argumentaire de vente » ?",opts:["Une liste des horaires des employés","Un inventaire des produits cassés","Un document ou une trame qui rassemble les arguments pour présenter une offre"],a:2,why:"L'argumentaire aide le vendeur à présenter les caractéristiques et les avantages d'une offre."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Que désigne le mot « assortiment » dans un magasin ?",opts:["La somme dépensée par un seul client","L'ensemble des produits ou références proposés à la vente","Le total des salaires du personnel"],a:1,why:"L'assortiment est l'ensemble des références proposées par un point de vente."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Une « objection » d'un client est…",opts:["Une réduction de prix automatique","Une commande validée","Une réserve, un doute ou un frein exprimé par le client"],a:2,why:"Le vendeur écoute l'objection, la clarifie puis apporte une réponse adaptée."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Que signifie « réassort » ?",opts:["Former un nouveau vendeur","Réapprovisionner le rayon en produits","Changer le logo du magasin"],a:1,why:"Le réassort consiste à remettre des produits en rayon pour compléter les quantités disponibles."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Qu'est-ce qu'une « cible commerciale » ?",opts:["Le stock de sécurité d'un magasin","Une affiche placée sur la vitrine","Le groupe de clients que l'entreprise souhaite toucher en priorité"],a:2,why:"La cible est le public visé par une offre ou une action commerciale."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"Que désigne le « linéaire » ?",opts:["Le fichier des clients fidèles","La longueur de rayonnage consacrée aux produits","Le prix d'achat d'un article"],a:1,why:"Le linéaire est l'espace de présentation en rayon attribué aux produits."},
+{mission:1,title:"Mission 1 — Le mot mystère",type:"mcq",q:"À quoi sert la PLV (publicité sur le lieu de vente) ?",opts:["À enregistrer les factures des fournisseurs","À attirer l'attention et informer le client dans le point de vente","À calculer les congés du personnel"],a:1,why:"La PLV comprend notamment les affiches, présentoirs et supports qui valorisent une offre en magasin."},
+{mission:2,title:"Mission 2 — Chasse aux synonymes",type:"open",q:"Trouve au moins deux synonymes de « montrer » dans une situation professionnelle.",examples:["présenter","exposer","faire découvrir","démontrer"],why:"Exemples possibles : présenter, exposer, faire découvrir, démontrer. Le synonyme dépend du contexte."},
+{mission:2,title:"Mission 2 — Chasse aux synonymes",type:"open",q:"Trouve au moins deux synonymes de « aider » dans la relation client.",examples:["accompagner","conseiller","orienter","assister"],why:"Exemples possibles : accompagner, conseiller, orienter, assister. Certains mots sont plus adaptés selon la situation."},
+{mission:2,title:"Mission 2 — Chasse aux synonymes",type:"open",q:"Trouve au moins deux synonymes de « content » pour décrire un client.",examples:["satisfait","ravi","enchanté","heureux"],why:"Exemples possibles : satisfait, ravi, enchanté, heureux. « Satisfait » est souvent adapté au contexte professionnel."},
+{mission:2,title:"Mission 2 — Chasse aux synonymes",type:"open",q:"Trouve deux façons plus professionnelles de dire « pas cher ».",examples:["abordable","économique","à prix attractif","peu coûteux"],why:"Exemples possibles : abordable, économique, à prix attractif, peu coûteux."},
+{mission:2,title:"Mission 2 — Chasse aux synonymes",type:"open",q:"Trouve au moins deux synonymes de « dire » dans un échange professionnel.",examples:["indiquer","préciser","expliquer","annoncer","informer"],why:"Exemples possibles : indiquer, préciser, expliquer, annoncer, informer. Il faut choisir selon le sens de la phrase."},
+{mission:2,title:"Mission 2 — Chasse aux synonymes",type:"open",q:"Trouve un synonyme de « problème » adapté à une réclamation client.",examples:["difficulté","incident","anomalie","désagrément"],why:"Exemples possibles : difficulté, incident, anomalie, désagrément. Le mot choisi doit correspondre à la situation."},
+{mission:3,title:"Mission 3 — Reformule !",type:"open",q:"Reformule cette phrase avec un vocabulaire plus professionnel : « Je vais vous montrer ce truc. »",examples:["Je vais vous présenter ce produit.","Je vais vous faire découvrir cet article.","Permettez-moi de vous présenter ce produit."],why:"Exemple : « Je vais vous présenter ce produit. » Il faut remplacer « montrer » par un verbe précis et « truc » par « produit » ou « article »."},
+{mission:3,title:"Mission 3 — Reformule !",type:"open",q:"Améliore cette phrase : « Ce produit est bien et pas cher. »",examples:["Ce produit est de bonne qualité et proposé à un prix abordable.","Cet article offre un bon rapport qualité-prix.","Ce produit est intéressant et son prix est attractif."],why:"Exemple : « Cet article offre un bon rapport qualité-prix. » La reformulation doit être précise et adaptée au client."},
+{mission:3,title:"Mission 3 — Reformule !",type:"open",q:"Remplace la répétition : « Ce sac est pratique. Ce sac est aussi solide. Ce sac est disponible en noir. »",examples:["Ce sac est pratique et solide. Il est également disponible en noir.","Ce sac, à la fois pratique et solide, existe aussi en noir."],why:"Exemple : « Ce sac est pratique et solide. Il est également disponible en noir. » On peut utiliser un pronom ou réunir les informations dans une phrase."},
+{mission:3,title:"Mission 3 — Reformule !",type:"open",q:"Un client dit : « C'est trop cher. » Écris une réponse professionnelle qui reconnaît sa remarque et propose une piste.",examples:["Je comprends votre remarque. Souhaitez-vous découvrir un modèle plus abordable ?","Je comprends que le prix soit important pour vous. Je peux vous présenter une autre option."],why:"Une bonne réponse reste courtoise, reconnaît la préoccupation du client et propose une solution sans le contredire."},
+{mission:3,title:"Mission 3 — Reformule !",type:"open",q:"Remplace le mot vague « chose » : « Cette chose permet de garder les aliments au frais. »",examples:["Cet appareil permet de conserver les aliments au frais.","Ce réfrigérateur permet de conserver les aliments au frais."],why:"Il faut nommer précisément l'objet si le contexte le permet : appareil, réfrigérateur, glacière, etc."},
+{mission:4,title:"Mission 4 — Défis en magasin",type:"mcq",q:"Une cliente hésite entre deux manteaux. Quelle phrase est la plus professionnelle ?",opts:["« Prenez celui-là, il est trop bien. »","« Je peux vous présenter les avantages de chaque modèle pour vous aider à choisir. »","« Comme vous voulez, moi je sais pas. »"],a:1,why:"La phrase est claire, courtoise et propose un accompagnement sans imposer un choix."},
+{mission:4,title:"Mission 4 — Défis en magasin",type:"mcq",q:"Un client se plaint d'un article défectueux. Quel mot décrit le mieux sa démarche ?",opts:["Une réclamation","Un assortiment","Un facing"],a:0,why:"Une réclamation est l'expression d'un mécontentement ou d'une demande de résolution d'un problème."},
+{mission:4,title:"Mission 4 — Défis en magasin",type:"mcq",q:"Le rayon est presque vide et il faut remettre des produits en place. Quelle action réalise-t-on ?",opts:["La fidélisation","Le réassort","La prospection"],a:1,why:"Le réassort permet de compléter le rayon. La prospection vise plutôt à rechercher de nouveaux clients."},
+{mission:4,title:"Mission 4 — Défis en magasin",type:"mcq",q:"Quel terme désigne l'espace de présentation occupé par un produit en rayon ?",opts:["Le linéaire","L'argumentaire","La réclamation"],a:0,why:"Le linéaire correspond à l'espace de rayonnage consacré aux produits."},
+{mission:4,title:"Mission 4 — Défis en magasin",type:"mcq",q:"Une entreprise contacte des clients potentiels pour leur présenter son offre. Il s'agit de…",opts:["La prospection","Le réassort","La fidélisation uniquement"],a:0,why:"La prospection consiste à rechercher et contacter des clients potentiels."},
+{mission:4,title:"Mission 4 — Défis en magasin",type:"mcq",q:"Quelle formule convient le mieux pour terminer un échange avec un client satisfait ?",opts:["« Bon, c'est bon, salut. »","« Merci de votre visite et excellente journée à vous. »","« Voilà, c'est fini. »"],a:1,why:"Une formule de clôture professionnelle reste polie, positive et adaptée au contexte."},
+{mission:5,title:"Mission 5 — Bilan final",type:"mcq",q:"Quel mot peut remplacer « aider » dans « Je vais vous aider à choisir » ?",opts:["Accompagner","Déranger","Interrompre"],a:0,why:"« Accompagner » exprime l'idée de guider le client dans son choix."},
+{mission:5,title:"Mission 5 — Bilan final",type:"mcq",q:"Quel mot désigne un doute ou une réserve exprimée par un client ?",opts:["Une objection","Un assortiment","Une implantation"],a:0,why:"Une objection peut concerner le prix, l'utilité, la qualité ou les conditions d'achat."},
+{mission:5,title:"Mission 5 — Bilan final",type:"mcq",q:"Quel mot professionnel peut remplacer « pas cher » dans une présentation commerciale ?",opts:["Abordable","Bizarre","Compliqué"],a:0,why:"« Abordable » indique que le prix est accessible. Il faut cependant que ce terme soit justifié par l'offre."},
+{mission:5,title:"Mission 5 — Bilan final",type:"mcq",q:"Que signifie « satisfaire un besoin client » ?",opts:["Proposer une réponse adaptée à ce que recherche le client","Présenter tous les produits sans écouter le client","Inciter systématiquement à acheter le produit le plus cher"],a:0,why:"Satisfaire un besoin suppose d'écouter le client et de proposer une solution adaptée."}
+];
+let current=0, score=0, completed=new Set(), responses={};
+const $=id=>document.getElementById(id);
+function startMission(mission){
+  current=tasks.findIndex(t=>t.mission===mission);
+  if(current<0)return;
+  $('intro').classList.add('hide');$('results').classList.add('hide');$('allQuestions').classList.add('hide');$('game').classList.remove('hide');
+  render();
+}
+function showAllQuestions(){
+  $('intro').classList.add('hide');$('game').classList.add('hide');$('results').classList.add('hide');$('allQuestions').classList.remove('hide');
+  let html='';
+  let lastMission=0;
+  tasks.forEach((t,i)=>{
+    if(t.mission!==lastMission){lastMission=t.mission;html+=`<div class="module" style="margin:18px 0"><h3>${t.title}</h3></div>`;}
+    html+=`<div class="module" style="margin:12px 0"><p><strong>Question ${i+1} :</strong> ${t.q}</p>`;
+    if(t.type==='mcq'){
+      html+='<ol type="A">'+t.opts.map((o,j)=>`<li style="margin:6px 0">${o}${j===t.a?' <strong style="color:var(--green)">✓ Bonne réponse</strong>':''}</li>`).join('')+'</ol>';
+    } else {
+      html+='<p><strong>Exemples de réponses possibles :</strong> '+t.examples.join(' · ')+'</p>';
+    }
+    html+=`<div class="feedback">${t.why}</div></div>`;
+  });
+  $('allQuestionsContent').innerHTML=html;
+}
+function backToMenu(){
+  $('allQuestions').classList.add('hide');$('intro').classList.remove('hide');
+}
+
+function startGame(){current=0;score=0;completed=new Set();responses={};$('intro').classList.add('hide');$('results').classList.add('hide');$('game').classList.remove('hide');render()}
+function render(){
+ const t=tasks[current];$('missionLabel').textContent=t.title;$('scoreLabel').textContent='Score : '+score;$('progressText').textContent=`Question ${current+1} sur ${tasks.length}`;$('progressBar').style.width=((current+1)/tasks.length*100)+'%';$('backBtn').disabled=current===0;
+ $('feedback').className='feedback hide';$('feedback').textContent='';$('checkBtn').classList.remove('hide');$('nextBtn').classList.add('hide');
+ let html=`<h2>${t.title}</h2><p class="muted">Prends le temps de lire la consigne avant de répondre.</p><div class="term">${t.q}</div>`;
+ if(t.type==='mcq'){
+   html+='<div class="answers">'+t.opts.map((o,i)=>`<button class="answer ${responses[current]?.choice===i?'selected':''}" onclick="choose(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')+'</div>';
+ }else{
+   html+=`<label for="openAnswer"><strong>Ta réponse :</strong></label><textarea id="openAnswer" placeholder="Écris ta réponse ici…">${responses[current]?.text||''}</textarea><p class="muted">Écris avec tes propres mots. Tu peux proposer plusieurs réponses.</p>`;
+ }
+ $('activity').innerHTML=html;
+ if(completed.has(current)){showFeedback(true);$('checkBtn').classList.add('hide');$('nextBtn').classList.remove('hide')}
+}
+function choose(i){if(completed.has(current))return;responses[current]={...(responses[current]||{}),choice:i};document.querySelectorAll('.answer').forEach((b,j)=>{b.classList.toggle('selected',i===j)})}
+function checkAnswer(){
+ const t=tasks[current];let good=false;
+ if(t.type==='mcq'){if(responses[current]?.choice===undefined){alert('Choisis une réponse avant de vérifier.');return}good=responses[current].choice===t.a;if(good)score++;}
+ else{
+   const text=$('openAnswer').value.trim();if(!text){alert('Écris une réponse avant de vérifier.');return}
+   responses[current]={...(responses[current]||{}),text};
+   good=checkOpen(text,t.examples);
+   if(good)score++;
+ }
+ completed.add(current);$('scoreLabel').textContent='Score : '+score;showFeedback(good);$('checkBtn').classList.add('hide');$('nextBtn').classList.remove('hide');
+}
+function checkOpen(text,examples){
+ const clean=s=>s.toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,!?;:']/g,' ').replace(/\s+/g,' ').trim();
+ const a=clean(text);const hits=examples.filter(ex=>{const e=clean(ex);const words=e.split(' ').filter(w=>w.length>4);return a.includes(e)||words.some(w=>a.split(' ').includes(w))});
+ // Open answers are assessed flexibly: examples are used as guidance, and non-empty responses are not automatically marked wrong.
+ return hits.length>0;
+}
+function showFeedback(good){
+ const t=tasks[current];const fb=$('feedback');fb.className='feedback '+(good?'good':'bad');
+ fb.innerHTML=(t.type==='open'?'Correction indicative — plusieurs réponses peuvent convenir. ':good?'Bonne réponse ! ':'Relis la définition et essaie de comprendre la différence. ')+t.why+(t.type==='open'?'<br><br><strong>Exemples possibles :</strong> '+t.examples.join(' · '):'');
+}
+function previousQuestion(){if(current>0){current--;render()}}
+function nextQuestion(){if(current<tasks.length-1){current++;render()}else finish()}
+function finish(){
+ $('game').classList.add('hide');$('results').classList.remove('hide');
+ const automatic=tasks.filter(t=>t.type==='mcq').length;const correctMcq=tasks.filter((t,i)=>t.type==='mcq'&&responses[i]?.choice===t.a).length;
+ $('finalScore').textContent=correctMcq+' / '+automatic;
+ $('resultName').textContent=$('student').value.trim()?`Bravo ${$('student').value.trim()}, tu as terminé les cinq missions.`:'Tu as terminé les cinq missions. Bravo pour ton travail !';
+ $('resultMessage').textContent=correctMcq/automatic>=.8?'Très bon résultat : tu maîtrises déjà plusieurs notions. Continue à enrichir ton vocabulaire.':correctMcq/automatic>=.5?'Bon travail. Relis les corrections et note les mots que tu dois encore mémoriser.':'Tu as commencé à apprendre de nouveaux mots. Reprends les corrections et refais le défi pour progresser.';
+}
+function restartGame(){current=0;score=0;completed=new Set();responses={};$('results').classList.add('hide');$('allQuestions').classList.add('hide');$('intro').classList.remove('hide')}
+</script>
+
+</body></html>
