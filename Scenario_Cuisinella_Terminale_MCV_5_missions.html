@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuisinella — Scénario interactif Terminale Bac Pro MCV</title>
+<style>
+:root{--red:#bd2635;--dark:#202936;--ink:#263241;--muted:#647181;--line:#dce2e8;--soft:#f4f6f8;--green:#24734b;--orange:#8a4b13}
+*{box-sizing:border-box}body{margin:0;background:#eef1f4;color:var(--ink);font:16px/1.55 Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#a91f2e,#d94a55);color:#fff;padding:30px 20px}
+.wrap{max-width:1150px;margin:auto}header .eyebrow{text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;font-weight:bold;opacity:.9}
+h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.15;margin:.45rem 0}header p{max-width:850px;margin:.6rem 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.chips span{border:1px solid #ffffff75;border-radius:20px;padding:4px 10px;font-size:.82rem}
+main{max-width:1150px;margin:22px auto;padding:0 16px}.notice{background:#fff8e9;border:1px solid #efd9a8;border-radius:12px;padding:14px 16px;margin-bottom:18px}
+.layout{display:grid;grid-template-columns:255px minmax(0,1fr);gap:18px;align-items:start}
+nav,.content{background:white;border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 18px #1822300b}
+nav{padding:16px;position:sticky;top:12px}nav h2{font-size:1.05rem;margin:0 0 12px}
+.navbtn{display:flex;width:100%;text-align:left;align-items:center;gap:10px;border:1px solid transparent;background:white;padding:10px;border-radius:9px;margin:4px 0;color:var(--ink);font-weight:600;cursor:pointer}
+.navbtn:hover{background:var(--soft)}.navbtn.active{background:#fff0f1;border-color:#efc2c7;color:#92202b}.navbtn.done .num{background:var(--green)}
+.num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:#dfe4e9;color:#273343;font-weight:bold}
+.progress{height:8px;background:#e8ebef;border-radius:10px;margin-top:16px;overflow:hidden}.bar{height:100%;background:var(--red);width:0;transition:width .2s}.small{font-size:.85rem;color:var(--muted)}
+.content{padding:clamp(18px,3vw,30px);min-height:680px}.mission{display:none}.mission.active{display:block}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--red);font-weight:bold}
+h2{line-height:1.25}h3{margin-bottom:6px}h2.title{font-size:1.65rem;margin:.2rem 0 .7rem}
+.task{border:1px solid var(--line);border-radius:12px;padding:15px;margin:15px 0;background:#fff}
+.task-title{font-weight:bold;margin-bottom:8px}.field{margin:13px 0}.field label,.question label{display:block;font-weight:600;margin-bottom:6px}
+input[type=text],input[type=number],textarea,select{width:100%;padding:10px 11px;border:1px solid #cbd3dc;border-radius:8px;font:inherit;background:white;color:var(--ink)}
+textarea{min-height:90px;resize:vertical}.options{display:grid;gap:8px}.options label{display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:8px;font-weight:normal;cursor:pointer}.options input{margin-top:5px}
+button{font:inherit;cursor:pointer;border-radius:8px;padding:10px 14px;border:1px solid #cbd3dc;background:white;color:var(--ink);font-weight:650}
+button.primary{background:var(--red);border-color:var(--red);color:white}button:hover{filter:brightness(.98)}button:focus,input:focus,textarea:focus,select:focus{outline:3px solid #bd26352a;outline-offset:1px}
+.feedback{display:none;margin-top:10px;padding:11px 13px;border-radius:8px}.feedback.show{display:block}.feedback.good{display:block;background:#e7f5ec;color:#205f3c}.feedback.bad{display:block;background:#fff0e7;color:#854319}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{background:var(--soft)}
+.actions{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px;margin-top:24px}
+.rubric{background:#f5f7f9;border-radius:10px;padding:13px 15px}.muted{color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin:24px 0}
+@media(max-width:800px){.layout{grid-template-columns:1fr}nav{position:static}.navgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.content{min-height:0}}
+@media print{body{background:white}header{background:white;color:#222;padding:10px}.chips{color:#333}nav,.actions{display:none}.layout{display:block}.content{border:0;box-shadow:none;padding:0}.mission{display:block!important;page-break-inside:avoid}.notice{margin:8px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Terminale Bac Pro Métiers du Commerce et de la Vente · Scénario interactif</div>
+<h1>Cuisinella — De la satisfaction client à la fidélisation</h1>
+<p><strong>Votre rôle :</strong> vous êtes conseiller·ère commercial·e dans un magasin Cuisinella. La responsable vous confie une mission complète : mesurer la satisfaction, comprendre les causes d'insatisfaction, résoudre les réclamations, fidéliser les clients et évaluer les résultats.</p>
+<div class="chips"><span>Situation professionnelle fictive</span><span>5 missions progressives</span><span>Réponses téléchargeables</span><span>Utilisable hors connexion</span></div>
+</div></header>
+<main>
+<div class="notice"><strong>Consigne générale :</strong> appuyez vos réponses sur les documents et les données. Distinguez les faits, les hypothèses et vos propositions. Toutes les données, les réclamations et les avis de ce dossier sont fictifs et ne décrivent pas les résultats réels de Cuisinella.</div>
+<div class="layout">
+<nav aria-label="Navigation des missions">
+<h2>Votre feuille de route</h2>
+<div class="navgrid">
+<button class="navbtn active" data-go="0"><span class="num">1</span><span>Mesurer la satisfaction</span></button>
+<button class="navbtn" data-go="1"><span class="num">2</span><span>Analyser les résultats</span></button>
+<button class="navbtn" data-go="2"><span class="num">3</span><span>Traiter l'insatisfaction</span></button>
+<button class="navbtn" data-go="3"><span class="num">4</span><span>Fidéliser les clients</span></button>
+<button class="navbtn" data-go="4"><span class="num">5</span><span>Évaluer les actions</span></button>
+<button class="navbtn" data-go="5"><span class="num">✓</span><span>Bilan professionnel</span></button>
+</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p class="small" id="progresslabel">Mission 1 sur 5</p>
+<p class="small">Vos réponses restent dans cette page tant qu'elle est ouverte. Téléchargez-les avant de quitter.</p>
+</nav>
+<section class="content">
+
+<article class="mission active" data-mission="0">
+<div class="kicker">Mission 1 · Observer et mesurer</div>
+<h2 class="title">Mesurer la satisfaction des clients</h2>
+<p>La responsable souhaite disposer d'informations fiables sur l'expérience vécue par les clients, de la conception de leur cuisine jusqu'à sa pose.</p>
+<div class="task"><div class="task-title">Document 1 — Les outils disponibles</div>
+<table><thead><tr><th>Outil</th><th>Informations obtenues</th><th>Limite à connaître</th></tr></thead><tbody>
+<tr><td>Questionnaire de satisfaction</td><td>Réponses comparables sur l'accueil, les conseils, les délais ou la pose.</td><td>Le taux de réponse peut être faible.</td></tr>
+<tr><td>Avis en ligne</td><td>Commentaires spontanés et perception publique de l'entreprise.</td><td>Les auteurs ne représentent pas nécessairement tous les clients.</td></tr>
+<tr><td>Entretien / appel après la pose</td><td>Explications détaillées et possibilité de clarifier les besoins.</td><td>Demande du temps et une écoute attentive.</td></tr>
+<tr><td>Réclamations et incidents</td><td>Problèmes rencontrés, fréquence et suivi de leur résolution.</td><td>Ne mesure pas à lui seul la satisfaction de tous les clients.</td></tr>
+<tr><td>Indicateurs (CSAT, NPS, taux de réclamation)</td><td>Suivi chiffré et comparaison dans le temps.</td><td>Doivent être interprétés avec le contexte et les commentaires.</td></tr>
+</tbody></table></div>
+<div class="task"><div class="task-title">1.1 — Choisir l'outil le plus adapté</div>
+<div class="question"><label>Pour comparer la satisfaction concernant l'accueil, les conseils et la pose auprès de nombreux clients, quel outil est le plus adapté ?</label>
+<div class="options"><label><input type="radio" name="q11" value="a"> Lire uniquement les avis en ligne</label><label><input type="radio" name="q11" value="b"> Envoyer un questionnaire avec les mêmes questions à tous les clients</label><label><input type="radio" name="q11" value="c"> Attendre les réclamations spontanées</label></div><button onclick="checkRadio('q11','b','fb11','Bonne réponse : le questionnaire permet de comparer des réponses recueillies auprès de nombreux clients. Il est utile de le compléter par d’autres sources.')">Vérifier</button><div id="fb11" class="feedback"></div></div>
+<div class="question"><label>Pour comprendre précisément pourquoi un client est mécontent du délai de pose, quel outil privilégier ?</label>
+<div class="options"><label><input type="radio" name="q12" value="a"> Un entretien ou un appel avec le client, complété par l'examen du dossier</label><label><input type="radio" name="q12" value="b"> Un indicateur global uniquement</label><label><input type="radio" name="q12" value="c"> Une publicité sur les réseaux sociaux</label></div><button onclick="checkRadio('q12','a','fb12','Bonne réponse : l’entretien permet de comprendre la situation individuelle. Le dossier aide ensuite à vérifier les faits.')">Vérifier</button><div id="fb12" class="feedback"></div></div>
+<div class="field"><label for="a13">1.2 — Expliquez pourquoi il est préférable de croiser plusieurs outils.</label><textarea id="a13" placeholder="Un questionnaire permet de… Les avis en ligne… Les réclamations…"></textarea></div></div>
+<div class="actions"><span class="small">Pensez à justifier vos choix.</span><button class="primary" onclick="go(1)">Mission suivante →</button></div>
+</article>
+
+<article class="mission" data-mission="1">
+<div class="kicker">Mission 2 · Interpréter les données</div><h2 class="title">Analyser les résultats et identifier les causes</h2>
+<p>Le magasin a interrogé 100 clients ayant récemment commandé ou fait poser une cuisine. Les résultats ci-dessous sont fictifs.</p>
+<div class="task"><div class="task-title">Document 2 — Résultats du questionnaire</div>
+<table><thead><tr><th>Résultat</th><th>Nombre de clients</th></tr></thead><tbody><tr><td>Satisfaits ou très satisfaits</td><td>78</td></tr><tr><td>Insatisfaits</td><td>22</td></tr><tr><td>Clients ayant déposé une réclamation</td><td>12</td></tr></tbody></table>
+<p class="small">Attention : les clients ayant déposé une réclamation peuvent également figurer parmi les clients insatisfaits. Ne les additionnez pas automatiquement.</p></div>
+<div class="task"><div class="task-title">2.1 — Calculer et interpréter</div>
+<div class="field"><label for="a21">Calculez le taux de satisfaction (en %).</label><input type="number" id="a21" min="0" max="100" placeholder="Votre résultat en %"></div>
+<button onclick="checkNumber('a21',78,0.1,'fb21','Le calcul est : 78 ÷ 100 × 100 = 78 %.')">Vérifier le calcul</button><div id="fb21" class="feedback"></div>
+<div class="field"><label for="a22">Que vous apprend ce résultat ? Donnez un constat et une limite de l'indicateur.</label><textarea id="a22" placeholder="Constat… Limite…"></textarea></div>
+</div>
+<div class="task"><div class="task-title">Document 3 — Extraits d'avis clients fictifs</div>
+<table><thead><tr><th>Avis</th><th>Extrait</th></tr></thead><tbody>
+<tr><td>Client A</td><td>« Les conseils en magasin étaient excellents, mais la livraison a été reportée deux fois et nous avons été prévenus tardivement. »</td></tr>
+<tr><td>Client B</td><td>« Une façade était abîmée à la livraison. Le remplacement a pris du temps et je ne savais pas quand il arriverait. »</td></tr>
+<tr><td>Client C</td><td>« Le poseur était professionnel et a bien expliqué l'entretien de la cuisine. »</td></tr>
+<tr><td>Client D</td><td>« Après la signature, j'ai eu du mal à joindre quelqu'un pour obtenir une réponse sur l'avancement de mon dossier. »</td></tr>
+</tbody></table>
+<div class="field"><label for="a23">2.2 — Identifiez deux causes d'insatisfaction qui reviennent dans les avis.</label><textarea id="a23" placeholder="Cause 1… Cause 2…"></textarea></div>
+<div class="field"><label for="a24">Quelle information complémentaire faudrait-il recueillir avant de conclure sur les causes principales ?</label><textarea id="a24" placeholder="Exemple : vérifier les dossiers, la fréquence des retards…"></textarea></div>
+</div>
+<div class="actions"><button onclick="go(0)">← Retour</button><button class="primary" onclick="go(2)">Mission suivante →</button></div>
+</article>
+
+<article class="mission" data-mission="2">
+<div class="kicker">Mission 3 · Répondre et résoudre</div><h2 class="title">Traiter une réclamation et remédier à l'insatisfaction</h2>
+<p>Un client appelle le magasin : sa cuisine a été livrée avec une façade abîmée. Il attend depuis plusieurs jours une réponse et se dit très mécontent.</p>
+<div class="task"><div class="task-title">3.1 — Choisir la réaction professionnelle</div>
+<div class="question"><label>Quelle est la première attitude à adopter ?</label>
+<div class="options"><label><input type="radio" name="q31" value="a"> Contester immédiatement les propos du client</label><label><input type="radio" name="q31" value="b"> Écouter sans interrompre, reformuler le problème et reconnaître la gêne occasionnée</label><label><input type="radio" name="q31" value="c"> Promettre un remplacement le lendemain sans vérifier</label></div><button onclick="checkRadio('q31','b','fb31','Bonne réponse : écouter, reformuler et reconnaître la gêne permet de clarifier la demande sans faire de promesse irréaliste.')">Vérifier</button><div id="fb31" class="feedback"></div></div>
+<div class="question"><label>Après l'écoute, quelle démarche est la plus pertinente ?</label>
+<div class="options"><label><input type="radio" name="q32" value="a"> Vérifier le dossier, contacter le service concerné, proposer une solution réaliste et donner un délai de retour</label><label><input type="radio" name="q32" value="b"> Supprimer l'avis en ligne</label><label><input type="radio" name="q32" value="c"> Attendre que le client rappelle</label></div><button onclick="checkRadio('q32','a','fb32','Bonne réponse : il faut vérifier les faits, coordonner la réponse et informer le client du suivi prévu.')">Vérifier</button><div id="fb32" class="feedback"></div></div>
+<div class="field"><label for="a33">3.2 — Rédigez une réponse orale ou écrite au client. Elle doit contenir une reformulation, des excuses adaptées, une action concrète et un engagement de suivi réaliste.</label><textarea id="a33" placeholder="Bonjour Madame / Monsieur…"></textarea></div>
+<div class="field"><label for="a34">3.3 — Distinguez la solution individuelle pour ce client et l'action collective pour éviter que le problème se reproduise.</label><textarea id="a34" placeholder="Solution individuelle… Action collective…"></textarea></div>
+<div class="rubric"><strong>Repère professionnel :</strong> ne promettez jamais une date de remplacement, un remboursement ou un geste commercial sans vérifier les possibilités et les règles applicables. Le suivi doit être daté et la réponse cohérente avec les procédures du magasin.</div>
+</div>
+<div class="actions"><button onclick="go(1)">← Retour</button><button class="primary" onclick="go(3)">Mission suivante →</button></div>
+</article>
+
+<article class="mission" data-mission="3">
+<div class="kicker">Mission 4 · Reconstruire la relation</div><h2 class="title">Fidéliser les clients après l'achat</h2>
+<p>La responsable souhaite améliorer la relation après la vente, y compris avec les clients ayant rencontré un problème. Une réclamation bien traitée peut contribuer à restaurer la confiance, sans garantir que le client restera fidèle.</p>
+<div class="task"><div class="task-title">4.1 — Choisir les actions les plus pertinentes</div>
+<div class="options"><label><input type="checkbox" name="q41" value="a"> Appeler le client après la résolution pour vérifier que la solution lui convient</label><label><input type="checkbox" name="q41" value="b"> Envoyer le même message publicitaire à tous les clients sans tenir compte de leur situation</label><label><input type="checkbox" name="q41" value="c"> Envoyer des conseils d'entretien utiles après la pose</label><label><input type="checkbox" name="q41" value="d"> Ignorer les clients qui ont déposé une réclamation</label><label><input type="checkbox" name="q41" value="e"> Utiliser les retours clients pour améliorer le suivi des dossiers</label></div>
+<button onclick="checkMulti('q41',['a','c','e'],'fb41','Les bonnes réponses sont : suivi après résolution, conseils utiles et amélioration du suivi. La fidélisation doit reposer sur une relation utile et respectueuse.')">Vérifier</button><div id="fb41" class="feedback"></div></div>
+<div class="field"><label for="a42">4.2 — Proposez une action de fidélisation adaptée aux clients Cuisinella. Précisez la cible, le contenu et le canal de communication.</label><textarea id="a42" placeholder="Cible… Action… Canal…"></textarea></div>
+<div class="field"><label for="a43">4.3 — Expliquez en quoi votre action peut améliorer la relation client et quelles précautions respecter concernant les données personnelles.</label><textarea id="a43" placeholder="Effet attendu… Consentement / préférences / données utiles…"></textarea></div>
+<div class="rubric"><strong>À retenir :</strong> une action de fidélisation doit être utile, adaptée au client et conforme aux préférences de communication ainsi qu'aux règles de protection des données.</div>
+</div>
+<div class="actions"><button onclick="go(2)">← Retour</button><button class="primary" onclick="go(4)">Mission suivante →</button></div>
+</article>
+
+<article class="mission" data-mission="4">
+<div class="kicker">Mission 5 · Mesurer l'efficacité</div><h2 class="title">Évaluer les actions et proposer des améliorations</h2>
+<p>Après plusieurs mois, le magasin compare deux périodes fictives de même durée. Les données concernent 100 commandes sur chaque période.</p>
+<div class="task"><div class="task-title">Document 4 — Avant / après les actions correctives</div>
+<table><thead><tr><th>Indicateur</th><th>Avant</th><th>Après</th></tr></thead><tbody>
+<tr><td>Taux de satisfaction</td><td>78 %</td><td>86 %</td></tr>
+<tr><td>Réclamations liées aux délais ou au suivi</td><td>12</td><td>7</td></tr>
+<tr><td>Clients rappelés après résolution d'une réclamation</td><td>40 %</td><td>90 %</td></tr>
+</tbody></table>
+<p class="small">Ces données sont fictives. Une évolution favorable ne prouve pas, à elle seule, que les actions sont l'unique cause du changement.</p></div>
+<div class="task"><div class="task-title">5.1 — Interpréter les résultats</div>
+<div class="field"><label for="a51">De combien de points le taux de satisfaction a-t-il augmenté ?</label><input type="number" id="a51" placeholder="Nombre de points"></div><button onclick="checkNumber('a51',8,0.01,'fb51','86 % − 78 % = 8 points de pourcentage.')">Vérifier</button><div id="fb51" class="feedback"></div>
+<div class="field"><label for="a52">De combien le nombre de réclamations a-t-il diminué ? Donnez la diminution en nombre et en pourcentage par rapport à la période initiale.</label><textarea id="a52" placeholder="Diminution en nombre… Calcul du pourcentage…"></textarea></div>
+<div class="field"><label for="a53">5.2 — Les actions semblent-elles efficaces ? Justifiez avec deux données et indiquez une limite de votre analyse.</label><textarea id="a53" placeholder="Les données montrent que… Cependant…"></textarea></div>
+<div class="field"><label for="a54">5.3 — Proposez un nouvel objectif mesurable pour la période suivante.</label><textarea id="a54" placeholder="D'ici telle date, atteindre… en suivant l'indicateur…"></textarea></div>
+</div>
+<div class="actions"><button onclick="go(3)">← Retour</button><button class="primary" onclick="go(5)">Terminer le dossier →</button></div>
+</article>
+
+<article class="mission" data-mission="5">
+<div class="kicker">Production finale · Compte rendu professionnel</div><h2 class="title">Présenter vos recommandations à la responsable</h2>
+<p>Rédigez une synthèse courte, structurée et professionnelle. Appuyez-vous sur les résultats analysés au cours des missions.</p>
+<div class="field"><label for="a61">Votre compte rendu final</label><textarea id="a61" style="min-height:230px" placeholder="1. Diagnostic de la satisfaction…&#10;2. Principales causes d'insatisfaction…&#10;3. Réponse à apporter aux clients…&#10;4. Action de fidélisation…&#10;5. Indicateurs et objectif de suivi…"></textarea></div>
+<div class="field"><label for="a62">Auto-évaluation : quelle compétence maîtrisez-vous le mieux et laquelle devez-vous encore renforcer ? Justifiez.</label><textarea id="a62" placeholder="Je maîtrise… Je dois renforcer… Exemple…"></textarea></div>
+<div class="rubric"><strong>Critères de réussite</strong><ul><li>Les outils de mesure sont choisis selon l'information recherchée.</li><li>Les calculs sont exacts et les indicateurs correctement interprétés.</li><li>Les causes d'insatisfaction sont appuyées sur des éléments précis.</li><li>La réponse à la réclamation est professionnelle, réaliste et suivie.</li><li>L'action de fidélisation est adaptée et l'évaluation repose sur des indicateurs mesurables.</li></ul></div>
+<div class="task"><strong>Avant de quitter :</strong><p>téléchargez vos réponses au format texte pour conserver une copie de votre travail.</p><button class="primary" onclick="downloadAnswers()">Télécharger toutes mes réponses (.txt)</button> <button onclick="window.print()">Imprimer / enregistrer en PDF</button></div>
+<div class="actions"><button onclick="go(4)">← Retour à la mission 5</button><button onclick="go(0)">Revenir au début</button></div>
+</article>
+</section></div>
+<footer>Dossier pédagogique interactif · Terminale Bac Pro MCV · Cuisinella · Données fictives</footer>
+</main>
+<script>
+let current=0;
+const missions=[...document.querySelectorAll('.mission')], nav=[...document.querySelectorAll('.navbtn')];
+function go(i){current=i;missions.forEach((m,j)=>m.classList.toggle('active',j===i));nav.forEach((b,j)=>{b.classList.toggle('active',j===i);b.classList.toggle('done',j<i)});document.getElementById('bar').style.width=(i===5?100:i/5*100)+'%';document.getElementById('progresslabel').textContent=i===5?'Production finale':'Mission '+(i+1)+' sur 5';window.scrollTo({top:0,behavior:'smooth'});}
+nav.forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go))));
+function showFeedback(id,msg,good){const el=document.getElementById(id);el.textContent=msg;el.className='feedback show '+(good?'good':'bad');}
+function checkRadio(name,answer,feedback,msg){const selected=document.querySelector('input[name="'+name+'"]:checked');if(!selected){showFeedback(feedback,'Choisissez une réponse avant de vérifier.',false);return;}showFeedback(feedback,msg,selected.value===answer);}
+function checkNumber(id,answer,tolerance,feedback,msg){const v=document.getElementById(id).value;if(v.trim()===''){showFeedback(feedback,'Saisissez votre résultat avant de vérifier.',false);return;}const good=Math.abs(Number(v)-answer)<=tolerance;showFeedback(feedback,good?'Correct. '+msg:'Ce n’est pas tout à fait cela. Reprenez les données et le calcul. '+msg,good);}
+function checkMulti(name,answers,feedback,msg){const selected=[...document.querySelectorAll('input[name="'+name+'"]:checked')].map(x=>x.value).sort();const expected=[...answers].sort();const good=selected.length===expected.length&&selected.every((v,i)=>v===expected[i]);showFeedback(feedback,good?'Correct. '+msg:'Revoyez les réponses : certaines actions sont inadaptées. '+msg,good);}
+function downloadAnswers(){const parts=['CUISINELLA — Terminale Bac Pro MCV','Dossier interactif : satisfaction, réclamations et fidélisation','Réponses de l’élève',''];missions.forEach((m,i)=>{const title=m.querySelector('h2')?.innerText||('Mission '+(i+1));parts.push('=== '+title+' ===');m.querySelectorAll('textarea,input[type=text],input[type=number],select').forEach(el=>{const label=el.closest('.field')?.querySelector('label')?.innerText||el.id;parts.push(label+': '+(el.value||'Non renseigné'));});const radios=[...m.querySelectorAll('input[type=radio]:checked')];radios.forEach(el=>parts.push('Choix ('+el.name+'): '+el.parentElement.innerText.trim()));const checks=[...m.querySelectorAll('input[type=checkbox]:checked')];if(checks.length)parts.push('Choix cochés: '+checks.map(x=>x.parentElement.innerText.trim()).join('; '));parts.push('');});const blob=new Blob([parts.join('\n')],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Reponses_Cuisinella_Terminale_MCV.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);}
+</script>
+</body></html>
