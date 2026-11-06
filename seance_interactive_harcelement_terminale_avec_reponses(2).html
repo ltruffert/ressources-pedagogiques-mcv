@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harcèlement : comprendre, agir, respecter</title>
+<style>
+:root{--ink:#18243a;--muted:#62708a;--paper:#f5f7fb;--white:#fff;--blue:#3157c8;--teal:#0d8b83;--coral:#e36b55;--gold:#e8b84b;--line:#e1e7f0;--shadow:0 14px 36px rgba(27,43,77,.10)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(120deg,#182c57,#3157c8 65%,#0d8b83);color:white;padding:26px clamp(18px,5vw,64px) 22px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;font-weight:800;opacity:.8}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;margin:12px 0;max-width:850px}header p{max-width:720px;color:#e8eeff;margin:0}
+.pill{display:inline-flex;align-items:center;border:1px solid #ffffff55;border-radius:99px;padding:7px 12px;font-size:.84rem;font-weight:700}
+main{max-width:1160px;margin:0 auto;padding:24px clamp(14px,3vw,32px) 60px}
+.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.progress-wrap{flex:1;min-width:190px}.progress-label{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);margin-bottom:6px}.progress{height:8px;background:#e1e7f0;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width .25s}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 15px;font-weight:750;transition:.18s}
+button:focus-visible{outline:3px solid #f2bd42;outline-offset:3px}
+.primary{background:var(--blue);color:white}.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.secondary{background:#edf1fb;color:#2949a6}.ghost{background:white;color:var(--ink);border:1px solid var(--line)}
+.small{font-size:.88rem;padding:8px 11px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 22px}
+.nav button{background:white;border:1px solid var(--line);color:var(--muted);padding:9px 13px}
+.nav button.active{background:#e9efff;border-color:#b9c9ff;color:#2448b5}
+.panel{display:none}.panel.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,30px);box-shadow:var(--shadow);margin-bottom:18px}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--teal);font-weight:850}
+h2{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.12;margin:7px 0 12px}h3{margin:0 0 8px;font-size:1.13rem}
+.lead{color:var(--muted);font-size:1.05rem;max-width:850px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.nav{display:grid;grid-template-columns:repeat(2,1fr)}}
+.tile{background:#f8faff;border:1px solid var(--line);border-radius:15px;padding:17px}
+.tile p{margin:7px 0;color:#45536d}
+.tag{display:inline-block;border-radius:99px;padding:4px 9px;font-size:.76rem;font-weight:800;background:#e8f5f3;color:#08756e}
+.options{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.vote{background:#fff;border:1px solid #cfd8e8;color:#31405c}.vote.selected{background:#e9efff;border-color:var(--blue);color:#2448b5}
+.feedback{display:none;padding:13px 15px;border-radius:12px;background:#eef7f5;border-left:4px solid var(--teal);margin-top:12px;color:#214c49}
+.feedback.show{display:block}
+.reveal{margin-top:10px}
+.question{border-top:1px solid var(--line);padding:16px 0}.question:first-of-type{border-top:0}
+.qtitle{font-weight:800;margin-bottom:9px}
+.answer{display:none;color:#205c55;background:#eff8f6;border-radius:10px;padding:11px 13px;margin-top:10px}.answer.show{display:block}
+.counter{font-variant-numeric:tabular-nums;font-weight:850;color:var(--blue)}
+.callout{background:#fff7e5;border:1px solid #f1dfb1;border-radius:14px;padding:14px 16px;color:#644d1c}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.steps span{background:#edf1fb;border-radius:10px;padding:7px 10px;font-size:.84rem;font-weight:750;color:#354d91}
+.scenario{border:1px solid var(--line);border-radius:15px;padding:16px;background:#fbfcff}
+.scenario p{margin:7px 0;color:#45536d}
+textarea,input{width:100%;font:inherit;border:1px solid #ccd5e4;border-radius:11px;padding:11px;background:white;color:var(--ink)}
+textarea{min-height:78px;resize:vertical}
+label{font-size:.88rem;font-weight:750;display:block;margin:10px 0 5px}
+.poster-preview{background:linear-gradient(135deg,#182c57,#3157c8);color:white;border-radius:18px;padding:25px;text-align:center;min-height:190px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.poster-preview .poster-slogan{font-size:clamp(1.5rem,4vw,2.6rem);font-weight:950;line-height:1.08;margin:8px 0;overflow-wrap:anywhere}
+.poster-preview .poster-message{color:#e8eeff;max-width:520px}
+.footer-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}
+.timer{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#f2f5fc;padding:12px 15px;border-radius:13px;margin-top:14px}
+.timer strong{font-size:1.4rem;font-variant-numeric:tabular-nums}
+.note{font-size:.87rem;color:var(--muted)}
+.student-answer{margin:12px 0;padding:12px;background:#f8faff;border:1px dashed #aebbd2;border-radius:12px}.student-answer label{display:block;font-size:.88rem;font-weight:750;margin:0 0 6px;color:#354d75}.student-answer textarea{width:100%;min-height:76px;border:1px solid #ccd5e4;border-radius:10px;padding:10px;font:inherit;resize:vertical;background:#fff;color:var(--ink)}
+ul{padding-left:22px}
+@media print{header{background:#182c57!important;print-color-adjust:exact}.nav,.toolbar,.footer-actions,button{display:none!important}.panel{display:block!important;page-break-after:always}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div class="eyebrow">Séance de sensibilisation · Terminale Bac Pro</div><span class="pill">2 heures · parcours interactif</span></div>
+ <h1>Harcèlement :<br>comprendre, agir, respecter.</h1>
+ <p>On identifie les comportements, on apprend à réagir et on crée ensemble un message de prévention pour le lycée.</p>
+</header>
+<main>
+ <div class="toolbar">
+  <div class="progress-wrap"><div class="progress-label"><span>Progression de la séance</span><strong id="progressText">0 / 5 étapes</strong></div><div class="progress"><span id="progressBar"></span></div></div>
+  <button class="ghost small" onclick="window.print()">Imprimer les supports</button>
+ </div>
+ <div class="callout"><strong>Avant de commencer :</strong> le questionnaire fourni par le lycée est réalisé en premier (30 min). Cette présentation guide les 1 h 30 restantes. Les réponses peuvent être données à l'oral : aucune fiche élève n'est nécessaire, sauf si l'enseignant souhaite garder une trace.</div>
+ <nav class="nav" aria-label="Étapes de la séance">
+  <button class="active" data-step="0">1 · Quiz</button><button data-step="1">2 · Lucas</button><button data-step="2">3 · Mises en situation</button><button data-step="3">4 · Création collective</button><button data-step="4">5 · Bilan</button>
+ </nav>
+
+ <section class="panel active" id="step0">
+  <div class="card">
+   <div class="kicker">20 minutes · Vote et discussion</div><h2>Une plaisanterie ou du harcèlement ?</h2>
+   <p class="lead">Pour chaque situation, choisissez une réponse. Faites voter la classe à main levée, puis demandez à quelques élèves de justifier leur choix. Cliquez sur « Voir les éléments de réponse » pour animer la correction.</p>
+   <div class="steps"><span>1. Lire</span><span>2. Voter</span><span>3. Argumenter</span><span>4. Débriefer</span></div>
+  </div>
+  <div id="quizCards"></div>
+  <div class="card">
+   <h3>Pour lancer l'échange</h3>
+   <div class="question"><div class="qtitle">À partir de quand une plaisanterie devient-elle inacceptable ?</div><button class="secondary small" onclick="toggleAnswer('q1')">Afficher une piste</button><div class="answer" id="q1">Quand elle humilie, blesse, vise toujours la même personne, se répète malgré une demande d'arrêt ou crée un rapport de domination. « C'était pour rire » n'efface pas les effets sur la personne.</div></div>
+   <div class="question"><div class="qtitle">Peut-on harceler quelqu'un sans jamais le frapper ?</div><button class="secondary small" onclick="toggleAnswer('q2')">Afficher une piste</button><div class="answer" id="q2">Oui. Les violences peuvent être verbales, psychologiques, sociales ou numériques : insultes, rumeurs, humiliations, mises à l'écart, diffusion de contenus humiliants.</div></div>
+   <div class="question"><div class="qtitle">Pourquoi une victime peut-elle avoir du mal à parler ?</div><button class="secondary small" onclick="toggleAnswer('q3')">Afficher une piste</button><div class="answer" id="q3">Peur des représailles, honte, peur de ne pas être crue, culpabilité, crainte d'aggraver la situation ou impression que personne ne pourra l'aider.</div></div>
+  </div>
+  <div class="footer-actions"><span></span><button class="primary" onclick="go(1)">Continuer : étude de cas Lucas →</button></div>
+ </section>
+
+ <section class="panel" id="step1">
+  <div class="card">
+   <div class="kicker">25 minutes · Analyse collective</div><h2>Étude de cas : Lucas</h2>
+   <p class="lead">Lisez le récit à voix haute. Les élèves répondent oralement, en classe entière ou par petits groupes. Faites apparaître les pistes de correction progressivement.</p>
+  </div>
+  <div class="card">
+   <span class="tag">Situation fictive</span>
+   <h3 style="margin-top:12px">Ce qui arrive à Lucas</h3>
+   <p>Lucas est en Terminale. Depuis plusieurs mois, certains camarades se moquent de son apparence et de sa façon de s'exprimer. Au départ, il prend les remarques avec humour. Mais progressivement, des photos de lui sont détournées et diffusées sur les réseaux sociaux ; des élèves rient lorsqu'il prend la parole ; certains refusent de travailler avec lui ; il reçoit des messages insultants le soir. Ses résultats diminuent et il s'isole.</p>
+   <div class="callout"><strong>Question de départ :</strong> quels signes montrent que la situation devient grave ?</div>
+  </div>
+  <div class="card">
+   <h3>Questions à poser à la classe</h3>
+   <div class="question"><div class="qtitle">1. Quelles formes de violence repérez-vous ?</div><button class="secondary small" onclick="toggleAnswer('l1')">Voir les éléments de réponse</button><div class="answer" id="l1">Moqueries et humiliations verbales ; diffusion de photos détournées et messages insultants en ligne ; exclusion sociale. Plusieurs formes peuvent se cumuler.</div></div>
+   <div class="question"><div class="qtitle">2. Qui intervient dans cette situation ?</div><button class="secondary small" onclick="toggleAnswer('l2')">Voir les éléments de réponse</button><div class="answer" id="l2">Lucas (victime), les élèves qui initient les actes, ceux qui relaient ou encouragent, les témoins, les amis éventuels et les adultes pouvant intervenir. Un témoin qui partage ou commente peut amplifier la diffusion.</div></div>
+   <div class="question"><div class="qtitle">3. Quelles conséquences cela peut-il avoir ?</div><button class="secondary small" onclick="toggleAnswer('l3')">Voir les éléments de réponse</button><div class="answer" id="l3">Isolement, anxiété, perte de confiance, difficultés de concentration, absentéisme, baisse des résultats, peur de venir au lycée et souffrance psychologique. Les effets varient selon les personnes.</div></div>
+   <div class="question"><div class="qtitle">4. Que peut faire un témoin sans se mettre en danger ?</div><button class="secondary small" onclick="toggleAnswer('l4')">Voir les éléments de réponse</button><div class="answer" id="l4">Ne pas rire, liker ou partager ; soutenir Lucas et lui dire qu'il n'est pas seul ; conserver les éléments utiles sans les rediffuser ; signaler les faits à un adulte de confiance (enseignant, CPE, infirmier·ère, direction ou équipe pHARe). Ne pas confronter seul les auteurs si cela présente un risque.</div></div>
+   <div class="question"><div class="qtitle">5. Quel conseil concret donneriez-vous à Lucas ?</div><button class="secondary small" onclick="toggleAnswer('l5')">Voir les éléments de réponse</button><div class="answer" id="l5">En parler rapidement à un adulte de confiance, ne pas rester seul, garder les preuves des messages ou publications, demander de l'aide pour signaler les contenus. En cas de danger immédiat, prévenir sans délai un adulte et les services compétents.</div></div>
+  </div>
+  <div class="footer-actions"><button class="ghost" onclick="go(0)">← Retour au quiz</button><button class="primary" onclick="go(2)">Continuer : mises en situation →</button></div>
+ </section>
+
+ <section class="panel" id="step2">
+  <div class="card">
+   <div class="kicker">25 minutes · Groupes et jeu de rôles</div><h2>Et toi, tu fais quoi ?</h2>
+   <p class="lead">Les mises en situation se font en groupes. Chaque groupe prépare une scène courte (2 à 3 minutes) montrant une réaction qui aggrave la situation, puis une réaction responsable et réaliste.</p>
+   <div class="callout"><strong>Consigne de sécurité :</strong> on joue une situation fictive, sans citer de vrais élèves ni reproduire d'insultes ciblant une personne de la classe. Personne n'est obligé de jouer un rôle qui le met mal à l'aise.</div>
+  </div>
+  <div class="grid">
+   <article class="scenario"><span class="tag">Scénario A · Messagerie</span><h3>Le groupe de discussion</h3><p>Tu découvres que plusieurs élèves insultent régulièrement un camarade dans un groupe WhatsApp. Ton meilleur ami participe aux moqueries.</p><p><strong>À jouer :</strong> comment réagir sans te laisser entraîner et comment soutenir la personne visée ?</p></article>
+   <article class="scenario"><span class="tag">Scénario B · Réseaux sociaux</span><h3>La vidéo</h3><p>Un camarade publie une vidéo humiliante d'une élève sur TikTok. Il te demande de la partager.</p><p><strong>À jouer :</strong> comment refuser, limiter la diffusion et demander le retrait ou le signalement du contenu ?</p></article>
+   <article class="scenario"><span class="tag">Scénario C · Témoin</span><h3>Dans la cour</h3><p>Tu assistes à des humiliations répétées envers un élève. Tu connais les auteurs et tu as peur de devenir leur prochaine cible.</p><p><strong>À jouer :</strong> comment aider sans te mettre en danger ?</p></article>
+   <article class="scenario"><span class="tag">Scénario D · PFMP</span><h3>En période de stage</h3><p>Pendant une PFMP, un salarié se moque quotidiennement d'un stagiaire, critique son travail devant les clients et l'exclut volontairement de certaines tâches.</p><p><strong>À jouer :</strong> vers qui se tourner et comment décrire les faits précisément ?</p></article>
+  </div>
+  <div class="card">
+   <h3>Débriefing après chaque scène</h3>
+   <ul><li>Quel était le comportement problématique ?</li><li>Quelle réaction a aggravé la situation ?</li><li>Quelle action responsable a été proposée ?</li><li>À quel adulte ou interlocuteur demander de l'aide ?</li></ul>
+   <p class="note">Pour le scénario PFMP : le stagiaire peut en parler à son tuteur en entreprise et à son professeur référent / enseignant chargé du suivi de stage. Il ne doit pas gérer seul une situation de violence ou d'humiliation.</p>
+  </div>
+  <div class="footer-actions"><button class="ghost" onclick="go(1)">← Retour à Lucas</button><button class="primary" onclick="go(3)">Continuer : création collective →</button></div>
+ </section>
+
+ <section class="panel" id="step3">
+  <div class="card">
+   <div class="kicker">20 minutes · Production collective</div><h2>À nous de faire passer le message !</h2>
+   <p class="lead">Vous êtes chargés de créer une mini-campagne de sensibilisation contre le harcèlement, destinée aux élèves du lycée.</p>
+   <div class="steps"><span>Groupes de 3 ou 4</span><span>Un slogan</span><span>Un message</span><span>Une action concrète</span></div>
+  </div>
+  <div class="grid">
+   <div class="card">
+    <h3>Votre mission</h3>
+    <label for="slogan">Votre slogan (court et percutant)</label><input id="slogan" maxlength="100" placeholder="Ex. : Le respect n'est pas une option." oninput="updatePoster()">
+    <label for="message">Votre message de prévention</label><textarea id="message" maxlength="240" placeholder="Que voulez-vous faire comprendre aux autres élèves ?" oninput="updatePoster()"></textarea>
+    <label for="action">Une action concrète à proposer</label><input id="action" maxlength="160" placeholder="Ex. : Soutenir, ne pas relayer et signaler." oninput="updatePoster()">
+    <p class="note">Vous pouvez recopier votre création sur une feuille A3 ou la réaliser sur Canva. Cette zone sert à préparer le contenu collectivement.</p>
+   </div>
+   <div class="card">
+    <h3>Aperçu de votre affiche</h3>
+    <div class="poster-preview"><div style="font-size:2rem">✊</div><div class="poster-slogan" id="posterSlogan">Le respect n'est pas une option.</div><div class="poster-message" id="posterMessage">Chaque parole et chaque geste comptent. Refusons les humiliations et les mises à l'écart.</div><div style="margin-top:14px;font-weight:850" id="posterAction">Soutenir · Ne pas relayer · Signaler</div></div>
+    <button class="secondary small" style="margin-top:12px" onclick="resetPoster()">Réinitialiser l'aperçu</button>
+   </div>
+  </div>
+  <div class="card">
+   <h3>Quelques idées pour démarrer</h3>
+   <div class="options"><button class="vote" onclick="useIdea('Un rire pour toi, une blessure pour l’autre.','Les mots et les partages en ligne ont des conséquences. Respectons-nous, même derrière un écran.','Ne pas rire · Ne pas partager · Soutenir')">Idée 1</button><button class="vote" onclick="useIdea('Ne sois pas spectateur, sois acteur du respect.','Face au harcèlement, chacun peut aider sans se mettre en danger.','Écouter · Accompagner · Alerter')">Idée 2</button><button class="vote" onclick="useIdea('La différence nous rassemble.','Personne ne mérite d’être humilié ou exclu. La bienveillance se construit chaque jour.','Inclure · Respecter · Signaler')">Idée 3</button></div>
+    <p class="note">Restitution : chaque groupe présente son slogan en une minute. La classe peut voter oralement pour le message le plus percutant, le plus original et le plus mobilisateur.</p>
+  </div>
+  <div class="footer-actions"><button class="ghost" onclick="go(2)">← Retour aux mises en situation</button><button class="primary" onclick="go(4)">Terminer : bilan et ressources →</button></div>
+ </section>
+
+ <section class="panel" id="step4">
+  <div class="card">
+   <div class="kicker">Bilan · 5 minutes intégrées à la restitution</div><h2>Les bons réflexes à retenir</h2>
+   <p class="lead">Le harcèlement ne se règle pas seul. Un témoin peut agir, même sans confronter directement les auteurs.</p>
+  </div>
+  <div class="grid">
+   <div class="tile"><span class="tag">1 · Ne pas participer</span><h3>Ne pas amplifier</h3><p>Ne pas rire, liker, commenter ou partager un contenu humiliant.</p></div>
+   <div class="tile"><span class="tag">2 · Soutenir</span><h3>Ne pas laisser seul</h3><p>Écouter la personne, la croire et lui proposer de l'accompagner vers un adulte.</p></div>
+   <div class="tile"><span class="tag">3 · Garder les éléments utiles</span><h3>Conserver les preuves</h3><p>Garder les messages ou captures utiles, sans les rediffuser ni les exposer davantage.</p></div>
+   <div class="tile"><span class="tag">4 · Signaler</span><h3>Demander de l'aide</h3><p>Prévenir un adulte de confiance, le CPE, l'infirmier·ère, un professeur ou la direction.</p></div>
+  </div>
+  <div class="card">
+   <h3>Ressources à communiquer</h3>
+   <p><strong>3018</strong> — numéro national pour les situations de harcèlement et de cyberharcèlement, notamment pour les jeunes et les familles.</p>
+   <p><strong>Au lycée</strong> — équipe éducative et dispositif pHARe : s'adresser à un adulte de confiance pour être accompagné.</p>
+   <p class="note">En cas de danger immédiat, demander sans délai l'aide d'un adulte et contacter les services d'urgence adaptés.</p>
+  </div>
+  <div class="card">
+   <h3>Un dernier tour de table</h3>
+   <p>Demandez à quelques élèves de compléter oralement cette phrase :</p>
+   <div class="poster-preview" style="background:linear-gradient(120deg,#0d8b83,#3157c8)"><div class="poster-slogan">« Si je suis témoin, je peux… »</div><div class="poster-message">Une idée concrète, réaliste et sans prise de risque.</div></div>
+  </div>
+  <div class="footer-actions"><button class="ghost" onclick="go(3)">← Retour à la création</button><button class="primary" onclick="go(0)">Recommencer la présentation ↻</button></div>
+ </section>
+ <p class="note" style="text-align:center;margin-top:24px">Support pédagogique interactif · Les situations sont fictives. Adapter les échanges au cadre et aux ressources de l'établissement.</p>
+</main>
+<script>
+const quiz=[
+ {title:"Situation 1 · Les surnoms",text:"Depuis plusieurs semaines, trois élèves surnomment régulièrement un camarade « le cas social ». Il leur demande d'arrêter, mais ils continuent en riant.",correct:"Harcèlement possible",why:"Les faits sont répétés, ciblent la même personne et continuent malgré sa demande d'arrêt. Les surnoms humiliants peuvent participer à une situation de harcèlement.",ask:"Quels indices vous ont aidés à décider ?"},
+ {title:"Situation 2 · Le désaccord",text:"Deux élèves se disputent après un désaccord sur un travail de groupe. Ils se reprochent mutuellement de ne pas avoir fait leur part, puis se réconcilient le lendemain.",correct:"Conflit ponctuel",why:"Un désaccord entre deux personnes qui peuvent se répondre et qui se résout rapidement n'est pas automatiquement du harcèlement. Il faut examiner le contexte et vérifier qu'il n'existe pas de répétition ou de domination.",ask:"Qu'est-ce qui différencie un conflit d'une situation de harcèlement ?"},
+ {title:"Situation 3 · La photo diffusée",text:"Une photo embarrassante d'une élève est publiée sur un réseau social. Plusieurs camarades la commentent et la repartagent.",correct:"Violence numérique ; harcèlement à évaluer",why:"La diffusion non consentie et les commentaires humiliants sont inacceptables. Si les actes se répètent ou s'inscrivent dans une dynamique de harcèlement, la situation peut relever du cyberharcèlement. Il faut agir sans rediffuser l'image.",ask:"Pourquoi chaque partage supplémentaire aggrave-t-il la situation ?"},
+ {title:"Situation 4 · L'exclusion organisée",text:"Un groupe décide de ne jamais adresser la parole à un élève et encourage les autres à faire de même.",correct:"Harcèlement possible",why:"L'exclusion sociale organisée et répétée peut constituer une forme de harcèlement, même sans insultes ni coups.",ask:"Comment un témoin peut-il aider la personne mise à l'écart ?"}
+];
+const quizRoot=document.getElementById('quizCards');
+quiz.forEach((q,i)=>{
+ const el=document.createElement('div');el.className='card';
+ el.innerHTML=`<div class="kicker">Situation ${i+1} / 4</div><h3>${q.title}</h3><p>${q.text}</p><div class="options">${["Harcèlement","Conflit","Plaisanterie déplacée","Je ne sais pas"].map(x=>`<button class="vote" data-v="${x}">${x}</button>`).join('')}</div><p class="note">Votez à main levée, puis demandez à plusieurs élèves d'expliquer leur choix.</p><button class="secondary small reveal">Voir les éléments de réponse</button><div class="feedback"><strong>${q.correct}</strong><br>${q.why}<br><em>${q.ask}</em></div>`;
+ el.querySelectorAll('.vote').forEach(b=>b.addEventListener('click',()=>{el.querySelectorAll('.vote').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')}));
+ el.querySelector('.reveal').addEventListener('click',()=>el.querySelector('.feedback').classList.toggle('show'));
+ quizRoot.appendChild(el);
+});
+
+function addStudentAnswerBoxes(){
+ document.querySelectorAll('.question').forEach((q)=>{
+   if(q.querySelector('.student-answer')) return;
+   const title=q.querySelector('.qtitle');
+   if(!title) return;
+   const box=document.createElement('div');
+   box.className='student-answer';
+   box.innerHTML='<label>Ta réponse / les idées du groupe</label><textarea placeholder="Écris ta réponse ici…"></textarea>';
+   title.insertAdjacentElement('afterend',box);
+ });
+ document.querySelectorAll('#quizCards .card').forEach((q)=>{
+   if(q.querySelector('.student-answer')) return;
+   const note=q.querySelector('.note');
+   if(!note) return;
+   const box=document.createElement('div');
+   box.className='student-answer';
+   box.innerHTML='<label>Explique ton choix / note les arguments du groupe</label><textarea placeholder="Pourquoi as-tu choisi cette réponse ? Quels indices as-tu repérés ?"></textarea>';
+   note.insertAdjacentElement('afterend',box);
+ });
+}
+
+function toggleAnswer(id){document.getElementById(id).classList.toggle('show')}
+const nav=[...document.querySelectorAll('.nav button')];
+function go(n){document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));nav.forEach((b,i)=>b.classList.toggle('active',i===n));document.getElementById('progressText').textContent=(n+1)+' / 5 étapes';document.getElementById('progressBar').style.width=((n+1)*20)+'%';window.scrollTo({top:0,behavior:'smooth'})}
+nav.forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.step))));
+addStudentAnswerBoxes();
+function updatePoster(){document.getElementById('posterSlogan').textContent=document.getElementById('slogan').value||'Votre slogan apparaîtra ici';document.getElementById('posterMessage').textContent=document.getElementById('message').value||'Votre message de prévention apparaîtra ici';document.getElementById('posterAction').textContent=document.getElementById('action').value||'Votre action concrète apparaîtra ici'}
+function useIdea(s,m,a){document.getElementById('slogan').value=s;document.getElementById('message').value=m;document.getElementById('action').value=a;updatePoster()}
+function resetPoster(){['slogan','message','action'].forEach(id=>document.getElementById(id).value='');updatePoster()}
+</script>
+</body></html>
