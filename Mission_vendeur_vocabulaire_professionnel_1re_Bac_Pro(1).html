@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission vendeur – Maîtriser le vocabulaire professionnel</title>
+<style>
+:root{--navy:#17324d;--blue:#2864a5;--pale:#eef5fc;--gold:#f3c969;--green:#24734d;--red:#a73535;--ink:#243447;--muted:#64748b}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+header{background:linear-gradient(120deg,#17324d,#2864a5);color:white;padding:28px 18px;text-align:center}
+header h1{margin:8px 0;font-size:clamp(1.5rem,4vw,2.2rem)}header p{margin:4px auto;max-width:760px}
+.tag{display:inline-block;background:#ffffff22;border:1px solid #ffffff66;border-radius:30px;padding:5px 12px;font-size:.85rem}
+main{max-width:1000px;margin:22px auto;padding:0 14px 45px}
+.progressbox,.panel{background:white;border:1px solid #dce5ef;border-radius:16px;padding:20px;margin:15px 0;box-shadow:0 5px 18px #17324d0c}
+.progressline{height:10px;background:#e5edf5;border-radius:20px;overflow:hidden}.progressline span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+h2{color:var(--navy);margin:0 0 8px;font-size:1.35rem}h3{margin:14px 0 6px;color:var(--navy)}
+.muted{color:var(--muted)}.mission{border-left:5px solid var(--blue)}
+label{display:block;font-weight:600;margin:12px 0 5px}
+select,input[type=text],textarea{width:100%;padding:11px;border:1px solid #b8c6d6;border-radius:9px;font:inherit;background:white;color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;font:inherit}
+.primary{background:var(--blue);color:white}.secondary{background:#eaf1f8;color:var(--navy)}.gold{background:var(--gold);color:#263747}
+button:hover{filter:brightness(.96)}button:focus,input:focus,select:focus,textarea:focus{outline:3px solid #2864a544;outline-offset:1px}
+.q{padding:12px 0;border-bottom:1px solid #edf1f5}.q:last-child{border:0}
+.feedback{margin-top:12px;padding:12px;border-radius:10px;display:none}.good{display:block;background:#eaf6ef;color:#185c3a}.bad{display:block;background:#fff0f0;color:#8e2929}.neutral{display:block;background:#eef5fc;color:#17324d}
+.pill{display:inline-block;background:var(--pale);color:var(--navy);border-radius:20px;padding:4px 10px;font-size:.82rem;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.wordcard{background:#f7faff;border:1px solid #dce7f2;border-radius:12px;padding:13px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media(max-width:600px){.panel,.progressbox{padding:15px}.row button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <span class="tag">CO-INTERVENTION FRANÇAIS / COMMERCE</span>
+  <h1>Mission vendeur : maîtriser le vocabulaire professionnel</h1>
+  <p>1re Bac Pro Métiers du Commerce et de la Vente</p>
+  <p>Quatre missions pour parler et écrire comme un professionnel de la vente.</p>
+</header>
+<main>
+<section class="progressbox">
+ <div class="row"><strong>Ta progression</strong><strong id="progressText">0 / 4 missions terminées</strong></div>
+ <div class="progressline" style="margin:10px 0"><span id="progressBar"></span></div>
+ <div class="row"><span class="pill">Score : <span id="score">0</span> point(s)</span><span class="muted" id="status">À toi de jouer !</span></div>
+</section>
+
+<section class="panel mission" id="m1">
+ <div class="row"><span class="pill">MISSION 1</span><span class="muted">Reconnaître les mots professionnels</span></div>
+ <h2>Le vocabulaire du vendeur</h2>
+ <p>Associe chaque terme à sa bonne définition. Choisis une réponse dans chaque liste.</p>
+ <div id="vocabQuestions"></div>
+ <button class="primary" onclick="checkVocab()">Vérifier mes réponses</button>
+ <div id="fb1" class="feedback" aria-live="polite"></div>
+</section>
+
+<section class="panel mission" id="m2">
+ <div class="row"><span class="pill">MISSION 2</span><span class="muted">Améliorer son expression</span></div>
+ <h2>Du langage familier au langage professionnel</h2>
+ <p>Réécris chaque phrase en utilisant une formulation professionnelle et respectueuse du client.</p>
+ <div class="q"><label for="rewrite1">1. « Vous voulez quoi ? »</label><input id="rewrite1" type="text" placeholder="Écris une formulation professionnelle"></div>
+ <div class="q"><label for="rewrite2">2. « C'est pas cher du tout ! »</label><input id="rewrite2" type="text" placeholder="Écris une formulation professionnelle"></div>
+ <div class="q"><label for="rewrite3">3. « Ça vous va ? »</label><input id="rewrite3" type="text" placeholder="Écris une formulation professionnelle"></div>
+ <button class="primary" onclick="checkRewrite()">Voir des exemples de correction</button>
+ <div id="fb2" class="feedback" aria-live="polite"></div>
+</section>
+
+<section class="panel mission" id="m3">
+ <div class="row"><span class="pill">MISSION 3</span><span class="muted">Employer le vocabulaire en contexte</span></div>
+ <h2>Dans la peau d'un vendeur</h2>
+ <p>Complète le dialogue avec le terme professionnel qui convient.</p>
+ <div class="q"><p><strong>Client :</strong> « Je cherche une veste pour le printemps. »</p>
+ <p><strong>Vendeur :</strong> « Bien sûr. Quel est votre <select id="d1"><option value="">Choisir…</option><option>budget</option><option>encaissement</option><option>stock</option></select> ? »</p></div>
+ <div class="q"><p><strong>Client :</strong> « Environ 80 euros. »</p>
+ <p><strong>Vendeur :</strong> « Je vais vous présenter deux modèles qui correspondent à votre <select id="d2"><option value="">Choisir…</option><option>réclamation</option><option>besoin</option><option>fidélité</option></select>. »</p></div>
+ <div class="q"><p><strong>Vendeur :</strong> « Je peux vous proposer de les essayer en <select id="d3"><option value="">Choisir…</option><option>cabine</option><option>réserve</option><option>caisse</option></select>. »</p></div>
+ <div class="q"><p><strong>Vendeur :</strong> « Souhaitez-vous régler par carte ou en espèces ? Je vais procéder à l'<select id="d4"><option value="">Choisir…</option><option>approvisionnement</option><option>encaissement</option><option>inventaire</option></select>. »</p></div>
+ <button class="primary" onclick="checkDialogue()">Vérifier le dialogue</button>
+ <div id="fb3" class="feedback" aria-live="polite"></div>
+</section>
+
+<section class="panel mission" id="m4">
+ <div class="row"><span class="pill">MISSION 4</span><span class="muted">Réinvestir à l'écrit</span></div>
+ <h2>Le défi final : rédiger un échange professionnel</h2>
+ <p>Un client entre dans un magasin de chaussures. Il cherche une paire adaptée à une longue marche et dispose d'un budget de 90 euros.</p>
+ <p><strong>Consigne :</strong> rédige un dialogue de 6 à 8 répliques entre le vendeur et le client. Utilise au moins cinq mots professionnels parmi : <em>besoin, budget, conseil, caractéristique, argument, disponibilité, essayage, encaissement, fidélisation</em>.</p>
+ <label for="finalText">Mon dialogue</label>
+ <textarea id="finalText" placeholder="Client : Bonjour, je recherche…&#10;Vendeur : Bonjour, je peux vous conseiller…"></textarea>
+ <button class="primary" onclick="checkFinal()">Vérifier mon défi</button>
+ <div id="fb4" class="feedback" aria-live="polite"></div>
+</section>
+
+<section class="panel">
+ <h2>Boîte à outils : les mots à retenir</h2>
+ <div class="grid">
+  <div class="wordcard"><strong>Découverte des besoins</strong><br><span class="muted">Questions permettant de comprendre les attentes du client.</span></div>
+  <div class="wordcard"><strong>Argument de vente</strong><br><span class="muted">Élément qui montre l'intérêt du produit pour le client.</span></div>
+  <div class="wordcard"><strong>Objection</strong><br><span class="muted">Réserve ou hésitation exprimée par le client.</span></div>
+  <div class="wordcard"><strong>Fidélisation</strong><br><span class="muted">Actions destinées à donner envie au client de revenir.</span></div>
+  <div class="wordcard"><strong>Disponibilité</strong><br><span class="muted">Possibilité d'obtenir le produit, immédiatement ou ultérieurement.</span></div>
+  <div class="wordcard"><strong>Encaissement</strong><br><span class="muted">Opération qui permet au client de régler son achat.</span></div>
+ </div>
+</section>
+<div class="row"><button class="secondary" onclick="resetAll()">Recommencer l'activité</button><button class="gold" onclick="window.print()">Imprimer mon travail</button></div>
+</main>
+<footer>Activité pédagogique – 1re Bac Pro MCV • Entraînement individuel</footer>
+<script>
+const vocab = [
+ ["Besoin","Ce que le client recherche ou attend."],
+ ["Objection","Réserve ou hésitation exprimée par le client."],
+ ["Argument de vente","Élément qui met en valeur l'intérêt du produit."],
+ ["Fidélisation","Actions visant à faire revenir le client."],
+ ["Encaissement","Opération de règlement de l'achat."]
+];
+const defs = [
+ "Ce que le client recherche ou attend.",
+ "Réserve ou hésitation exprimée par le client.",
+ "Élément qui met en valeur l'intérêt du produit.",
+ "Actions visant à faire revenir le client.",
+ "Opération de règlement de l'achat."
+];
+let completed = new Set(), points = 0;
+const vocabBox=document.getElementById('vocabQuestions');
+vocab.forEach((v,i)=>{
+ const div=document.createElement('div');div.className='q';
+ div.innerHTML=`<label for="v${i}">${i+1}. ${v[0]}</label><select id="v${i}"><option value="">Choisir une définition…</option>${defs.map((d,j)=>`<option value="${j}">${d}</option>`).join('')}</select>`;
+ vocabBox.appendChild(div);
+});
+function show(id,msg,kind){const e=document.getElementById(id);e.className='feedback '+kind;e.textContent=msg;}
+function update(){document.getElementById('progressText').textContent=`${completed.size} / 4 missions terminées`;document.getElementById('progressBar').style.width=(completed.size*25)+'%';document.getElementById('score').textContent=points;document.getElementById('status').textContent=completed.size===4?'Bravo, toutes les missions sont terminées !':'Continue tes missions.';}
+function finish(n,earned){if(!completed.has(n)){completed.add(n);points+=earned;}update();}
+function checkVocab(){
+ let ok=0;vocab.forEach((v,i)=>{if(document.getElementById('v'+i).value===String(i))ok++;});
+ if(ok===5){show('fb1','Excellent : 5 bonnes réponses sur 5. Tu maîtrises ces définitions.', 'good');finish(1,5);}
+ else show('fb1',`${ok}/5 bonnes réponses. Relis les définitions et modifie tes choix, puis vérifie à nouveau.`, 'bad');
+}
+function checkRewrite(){
+ const vals=[1,2,3].map(i=>document.getElementById('rewrite'+i).value.trim());
+ if(vals.some(v=>!v)){show('fb2','Complète les trois reformulations avant de consulter les exemples.','bad');return;}
+ show('fb2','Exemples possibles : 1. « Que puis-je faire pour vous ? »  2. « Ce produit présente un excellent rapport qualité-prix. »  3. « Souhaitez-vous vérifier si ce modèle vous convient ? » Compare tes propositions : elles doivent être polies, précises et adaptées au client.','neutral');finish(2,3);
+}
+function checkDialogue(){
+ const answers=['budget','besoin','cabine','encaissement'];let ok=0;
+ answers.forEach((a,i)=>{if(document.getElementById('d'+(i+1)).value===a)ok++;});
+ if(ok===4){show('fb3','Parfait : les quatre termes sont employés dans le bon contexte.','good');finish(3,4);}
+ else show('fb3',`${ok}/4 bonnes réponses. Indice : pense au montant disponible, à ce que recherche le client, au lieu où il essaie le vêtement et au règlement.`, 'bad');
+}
+function checkFinal(){
+ const t=document.getElementById('finalText').value.trim();
+ if(t.length<100){show('fb4','Développe ton dialogue : vise 6 à 8 répliques et au moins cinq mots professionnels.','bad');return;}
+ const words=['besoin','budget','conseil','caractéristique','argument','disponibilité','essayage','encaissement','fidélisation'];
+ const found=words.filter(w=>t.toLowerCase().includes(w));
+ const lines=t.split(/\n/).filter(x=>x.trim()).length;
+ if(found.length>=5){show('fb4',`Bravo ! Tu as réutilisé ${found.length} mots professionnels : ${found.join(', ')}. Relis ton dialogue pour vérifier les formules de politesse, la ponctuation et l'alternance vendeur/client. Nombre de lignes saisies : ${lines}.`, 'good');finish(4,5);}
+ else show('fb4',`Tu as utilisé ${found.length} mot(s) de la liste (${found.join(', ')||'aucun'}). Essaie d'en intégrer au moins cinq dans ton dialogue.`, 'bad');
+}
+function resetAll(){
+ if(!confirm('Effacer les réponses et recommencer ?'))return;
+ document.querySelectorAll('select').forEach(e=>e.value='');document.querySelectorAll('input[type=text],textarea').forEach(e=>e.value='');
+ document.querySelectorAll('.feedback').forEach(e=>{e.className='feedback';e.textContent='';});
+ completed=new Set();points=0;update();window.scrollTo({top:0,behavior:'smooth'});
+}
+update();
+</script>
+</body>
+</html>
