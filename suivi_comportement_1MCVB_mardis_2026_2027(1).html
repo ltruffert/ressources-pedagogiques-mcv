@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suivi annuel du comportement – 1.MCVB</title>
+<style>
+:root{font-family:Arial,sans-serif;color:#202633;background:#f4f6f9}
+body{margin:0;padding:20px}header,.panel{max-width:1250px;margin:0 auto 16px}
+h1{font-size:24px;margin:0 0 6px}.sub{color:#5b6472;margin:0 0 14px}
+.panel{background:white;border:1px solid #dce1e8;border-radius:12px;padding:15px;box-shadow:0 2px 8px #1720330a}
+.controls,.actions,.tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#475164}
+input,select,button{font:inherit}input[type=date],input[type=text],select{border:1px solid #cbd2dc;border-radius:7px;padding:9px;background:white;min-height:38px}
+button{border:0;border-radius:8px;padding:10px 14px;cursor:pointer;font-weight:600;background:#2457a6;color:white}
+button.secondary{background:#e9edf4;color:#263449}button.danger{background:#a83b3b}
+button.active{background:#173c78}.actions{margin-top:12px}.status{font-size:13px;color:#287044}
+.tabs{margin-bottom:12px}.tabcontent{display:none}.tabcontent.active{display:block}
+.table-wrap{overflow:auto;max-height:67vh;border:1px solid #dce1e8;border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:940px;background:white}
+th,td{border:1px solid #cbd2dc;padding:7px;text-align:center}
+th{position:sticky;top:0;background:#edf1f6;z-index:1;font-size:12px}
+th:first-child,td:first-child{position:sticky;left:0;background:#f7f8fa;z-index:2;text-align:left}
+th:first-child{z-index:3}td.name{font-weight:600;min-width:190px}
+td input{width:54px;box-sizing:border-box;text-align:center;border:1px solid #d4dae3;border-radius:5px;padding:7px}
+tfoot td{font-weight:bold;background:#f1f4f8}
+.small{font-size:12px;color:#667085;line-height:1.45;margin-top:10px}
+.stat{font-size:13px;color:#465264;padding:8px 10px;background:#f2f5f9;border-radius:8px}
+#annualTable{min-width:1050px}
+@media(max-width:650px){body{padding:10px}h1{font-size:20px}.panel{padding:11px}}
+@media print{body{background:white;padding:0}.panel{box-shadow:none;border:0}.controls,.actions,.tabs,.small{display:none}.tabcontent{display:block!important}.table-wrap{max-height:none;overflow:visible}th,td{position:static!important}}
+</style></head>
+<body>
+<header><h1>Suivi annuel du comportement – 1.MCVB</h1>
+<p class="sub">Année scolaire 2026–2027 · Tous les mardis de cours, hors vacances scolaires de l’académie Nancy-Metz (zone B).</p></header>
+
+<section class="panel">
+<div class="controls">
+<label>Choisir un mardi de l’année
+<select id="tuesdaySelect"></select></label>
+<label>Date du cours<input id="sessionDate" type="date"></label>
+<label>Heure / créneau<input id="sessionHour" type="text" placeholder="Ex. 8h–9h"></label>
+<label style="min-width:230px">Séance enregistrée<select id="history"><option value="">Nouvelle séance</option></select></label>
+</div>
+<div class="actions">
+<button id="save">Enregistrer cette heure</button><button class="secondary" id="new">Nouvelle heure</button>
+<button class="secondary" id="csv">Exporter toutes les données (CSV)</button><button class="secondary" id="print">Imprimer</button>
+<button class="danger" id="delete" disabled>Supprimer l’heure</button><span class="status" id="status" aria-live="polite"></span>
+</div>
+<p class="small">Tu peux enregistrer plusieurs heures le même mardi : indique simplement un créneau différent à chaque fois. Les séances restent modifiables dans l’historique. Les données sont enregistrées dans ce navigateur sur cet ordinateur ; exporte régulièrement le CSV pour en garder une copie.</p>
+</section>
+
+<section class="panel">
+<div class="tabs">
+<button class="tab active" data-tab="entry">Saisie d’une heure</button>
+<button class="tab secondary" data-tab="annual">Bilan annuel par élève</button>
+<button class="tab secondary" data-tab="calendar">Calendrier des mardis</button>
+</div>
+<div id="entry" class="tabcontent active">
+<div class="table-wrap"><table><thead><tr><th>Élève – 1.MCVB</th><th>Bavardage</th><th>Ne travaille pas</th><th>N’a pas ses affaires</th><th>Se déplace sans autorisation</th><th>Bruits parasites</th><th>Autre</th></tr></thead><tbody id="students"></tbody>
+<tfoot><tr><td>Total de cette heure</td><td id="t0">0</td><td id="t1">0</td><td id="t2">0</td><td id="t3">0</td><td id="t4">0</td><td id="t5">0</td></tr></tfoot></table></div>
+</div>
+<div id="annual" class="tabcontent">
+<p class="stat" id="annualInfo">Bilan cumulé de toutes les heures enregistrées.</p>
+<div class="table-wrap"><table id="annualTable"><thead><tr><th>Élève</th><th>Bavardage</th><th>Ne travaille pas</th><th>N’a pas ses affaires</th><th>Déplacements</th><th>Bruits parasites</th><th>Autre</th><th>Total</th></tr></thead><tbody id="annualBody"></tbody><tfoot id="annualFoot"></tfoot></table></div>
+</div>
+<div id="calendar" class="tabcontent">
+<p class="stat" id="calendarInfo"></p>
+<div class="controls" style="margin:12px 0">
+<label>Ajouter une date de cours<input id="addDate" type="date"></label>
+<button id="addDateBtn">Ajouter cette date</button>
+</div>
+<p class="small">Tu peux aussi modifier une date existante ou la retirer du calendrier. Les changements restent enregistrés sur ton ordinateur et ne modifient pas le calendrier des autres collègues.</p>
+<div id="calendarList"></div>
+</div>
+</section>
+<script>
+const students=["ANTOINE Jules","ARDOIN Mathias","BOSTAN Adem","BRISTIEL Louis","EL ALAOUI ESSOUSSI Omar","FOURNIER Théo","GODENER Leslie","GODENER Maden","KIBOUCH Abdellah","KIBOUCH Adam","KIBOUCH Ali","LAUGUSTIN Mélina","MITHOUARD Thibaut","NAUX Célia","ROHRBACHER Emma","SOUIRI Aymane","TRICHARD Sarah"];
+const categories=["Bavardage","Ne travaille pas","N’a pas ses affaires","Se déplace sans autorisation","Bruits parasites","Autre"];
+const tuesdays=["2026-09-01","2026-09-08","2026-09-15","2026-09-22","2026-09-29","2026-10-06","2026-10-13","2026-11-03","2026-11-10","2026-11-17","2026-11-24","2026-12-01","2026-12-08","2026-12-15","2027-01-05","2027-01-12","2027-01-19","2027-01-26","2027-02-02","2027-02-09","2027-02-16","2027-03-09","2027-03-16","2027-03-23","2027-03-30","2027-04-06","2027-04-13","2027-05-04","2027-05-11","2027-05-18","2027-05-25","2027-06-01","2027-06-08","2027-06-15","2027-06-22","2027-06-29"];
+const KEY="suivi_comportement_1MCVB_mardis_2026_2027_v1";
+const DATES_KEY=KEY+"_dates";
+let sessions=JSON.parse(localStorage.getItem(KEY)||"[]"),currentId=null;
+let classDates=JSON.parse(localStorage.getItem(DATES_KEY)||"null")||[...tuesdays];
+const $=id=>document.getElementById(id),tbody=$("students");
+function fr(iso){return new Date(iso+"T12:00:00").toLocaleDateString("fr-FR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});}
+function persistDates(){classDates=[...new Set(classDates)].sort();localStorage.setItem(DATES_KEY,JSON.stringify(classDates));refreshDateSelect();updateAnnual();}
+function refreshDateSelect(selected){let sel=$("tuesdaySelect"),wanted=selected||sel.value;sel.innerHTML="";classDates.forEach(d=>{let o=document.createElement("option");o.value=d;o.textContent=fr(d);sel.appendChild(o);});if(classDates.includes(wanted))sel.value=wanted;else if(classDates.length)sel.value=classDates[0];}
+refreshDateSelect();
+students.forEach((name,i)=>{let tr=document.createElement("tr"),td=document.createElement("td");td.className="name";td.textContent=name;tr.appendChild(td);categories.forEach((c,j)=>{let cell=document.createElement("td"),input=document.createElement("input");input.type="number";input.min="0";input.step="1";input.value="0";input.dataset.student=i;input.dataset.cat=j;input.setAttribute("aria-label",name+" – "+c);input.addEventListener("input",totals);cell.appendChild(input);tr.appendChild(cell);});tbody.appendChild(tr);});
+function blank(){return students.map(()=>categories.map(()=>0));}
+function read(){return [...tbody.querySelectorAll("input")].reduce((a,x)=>{a[+x.dataset.student][+x.dataset.cat]=Math.max(0,parseInt(x.value||"0",10)||0);return a;},blank());}
+function write(data){[...tbody.querySelectorAll("input")].forEach(x=>x.value=data?.[+x.dataset.student]?.[+x.dataset.cat]??0);totals();}
+function totals(){let d=read();categories.forEach((_,j)=>$("t"+j).textContent=d.reduce((s,r)=>s+r[j],0));}
+function persist(){localStorage.setItem(KEY,JSON.stringify(sessions));}
+function refreshHistory(id=""){let h=$("history");h.innerHTML='<option value="">Nouvelle heure</option>';[...sessions].sort((a,b)=>(b.date+b.hour).localeCompare(a.date+a.hour)).forEach(s=>{let o=document.createElement("option");o.value=s.id;o.textContent=fr(s.date)+" – "+s.hour;h.appendChild(o);});h.value=id;$("delete").disabled=!id;}
+function reset(){currentId=null;$("history").value="";$("delete").disabled=true;let d=$("tuesdaySelect").value||classDates[0]||"";$("sessionDate").value=d;$("sessionHour").value="";write(blank());$("status").textContent="Nouvelle heure prête.";}
+$("tuesdaySelect").onchange=e=>{if(!currentId)$("sessionDate").value=e.target.value;};
+$("sessionDate").onchange=e=>{if(classDates.includes(e.target.value))$("tuesdaySelect").value=e.target.value;};
+$("save").onclick=()=>{let date=$("sessionDate").value,hour=$("sessionHour").value.trim();if(!date||!hour){$("status").textContent="Indique la date et le créneau avant l’enregistrement.";return;}let item={id:currentId||String(Date.now()),date,hour,data:read()};let idx=sessions.findIndex(s=>s.id===item.id);if(idx>=0)sessions[idx]=item;else sessions.push(item);currentId=item.id;persist();refreshHistory(currentId);updateAnnual();$("status").textContent="Heure enregistrée.";};
+$("history").onchange=e=>{let s=sessions.find(x=>x.id===e.target.value);if(!s){reset();return;}currentId=s.id;$("sessionDate").value=s.date;if(classDates.includes(s.date))$("tuesdaySelect").value=s.date;$("sessionHour").value=s.hour;write(s.data);$("delete").disabled=false;$("status").textContent="Heure chargée : modifie puis enregistre."};
+$("new").onclick=reset;
+$("delete").onclick=()=>{if(!currentId||!confirm("Supprimer définitivement cette heure enregistrée ?"))return;sessions=sessions.filter(s=>s.id!==currentId);persist();refreshHistory();reset();updateAnnual();$("status").textContent="Heure supprimée.";};
+function updateAnnual(){let sums=blank();sessions.forEach(s=>(s.data||[]).forEach((r,i)=>r.forEach((v,j)=>sums[i][j]+=Number(v)||0)));let body=$("annualBody");body.innerHTML="";let totalsByCat=categories.map((_,j)=>sums.reduce((a,r)=>a+r[j],0));students.forEach((n,i)=>{let tr=document.createElement("tr"),name=document.createElement("td");name.textContent=n;tr.appendChild(name);let total=0;sums[i].forEach(v=>{let td=document.createElement("td");td.textContent=v;tr.appendChild(td);total+=v;});let td=document.createElement("td");td.textContent=total;tr.appendChild(td);body.appendChild(tr);});let foot=$("annualFoot");foot.innerHTML="";let tr=document.createElement("tr");let label=document.createElement("td");label.textContent="Total annuel";tr.appendChild(label);let grand=0;totalsByCat.forEach(v=>{let td=document.createElement("td");td.textContent=v;tr.appendChild(td);grand+=v;});let gt=document.createElement("td");gt.textContent=grand;tr.appendChild(gt);foot.appendChild(tr);$("annualInfo").textContent=sessions.length+" heure(s) enregistrée(s) · bilan cumulé de l’année.";let byDate={};sessions.forEach(s=>byDate[s.date]=(byDate[s.date]||0)+1);$("calendarInfo").textContent=classDates.length+" date(s) au calendrier. Chaque date peut accueillir plusieurs heures enregistrées.";let list=$("calendarList");list.innerHTML="";let ul=document.createElement("ul");classDates.forEach(d=>{let li=document.createElement("li");li.style.margin="8px 0";li.style.display="flex";li.style.gap="8px";li.style.alignItems="center";let dateInput=document.createElement("input");dateInput.type="date";dateInput.value=d;dateInput.setAttribute("aria-label","Modifier la date "+d);dateInput.onchange=()=>{let next=dateInput.value;if(!next)return;if(classDates.includes(next)&&next!==d){alert("Cette date est déjà dans le calendrier.");dateInput.value=d;return;}classDates=classDates.map(x=>x===d?next:x);sessions=sessions.map(x=>x.date===d?{...x,date:next}:x);persistDates();persist();refreshHistory(currentId);};let info=document.createElement("span");info.textContent=" — "+(byDate[d]||0)+" heure(s) enregistrée(s)";let del=document.createElement("button");del.type="button";del.className="danger";del.textContent="Retirer";del.onclick=()=>{if(!confirm("Retirer cette date du calendrier ? Les heures déjà enregistrées seront conservées dans l’historique."))return;classDates=classDates.filter(x=>x!==d);persistDates();};li.append(dateInput,info,del);ul.appendChild(li);});list.appendChild(ul);}
+$("addDateBtn").onclick=()=>{let d=$("addDate").value;if(!d){alert("Choisis une date à ajouter.");return;}if(classDates.includes(d)){alert("Cette date est déjà dans le calendrier.");return;}classDates.push(d);persistDates();$("addDate").value="";$("tuesdaySelect").value=d;$("sessionDate").value=d;$("status").textContent="Date ajoutée au calendrier.";};
+$("csv").onclick=()=>{if(!sessions.length){alert("Aucune heure enregistrée.");return;}let rows=[["Classe","Date","Créneau","Élève",...categories]];sessions.forEach(s=>students.forEach((n,i)=>rows.push(["1.MCVB",s.date,s.hour,n,...(s.data[i]||categories.map(()=>0))])));let csv=rows.map(r=>r.map(v=>'"'+String(v??"").replaceAll('"','""')+'"').join(";")).join("\r\n");let blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="suivi_annuel_1MCVB_2026-2027.csv";a.click();URL.revokeObjectURL(url);};
+$("print").onclick=()=>window.print();
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>{x.classList.remove("active");x.classList.add("secondary")});b.classList.add("active");b.classList.remove("secondary");document.querySelectorAll(".tabcontent").forEach(x=>x.classList.remove("active"));$(b.dataset.tab).classList.add("active");if(b.dataset.tab==="annual"||b.dataset.tab==="calendar")updateAnnual();});
+refreshDateSelect(classDates[0]);$("sessionDate").value=classDates[0]||"";refreshHistory();totals();updateAnnual();
+</script></body></html>
